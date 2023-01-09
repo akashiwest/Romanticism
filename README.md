@@ -1,4 +1,4 @@
-![主题图](https://blog.imakashi.top/screenshot_MinSize.jpg/)
+![主题图](https://blog.imakashi.top/screenshot_MinSize.jpg)
 # Romanticism(浪漫主义)
 一款简洁的 typecho 主题
 
