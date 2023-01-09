@@ -3,6 +3,8 @@
 # Romanticism(浪漫主义)
 一款简洁的 typecho 主题
 
+当前版本：V1.0
+
 **“在明石的简洁设计中捕捉来自日常生活中的浪漫主义。”**
 
 Demo: [明石博客](https://blog.imakashi.top/)
