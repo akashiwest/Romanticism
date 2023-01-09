@@ -1,0 +1,98 @@
+#loading {
+  width: 100%;
+  height: 100%;
+ font-weight: 900;
+ font-size: 30px;
+ margin: 0;
+ padding-left: 15px;
+ padding-right: 15px;
+ text-align: center; 
+ border-radius: 0; 
+ position: fixed; 
+ left: 0;
+ right: 0;
+ top: 0;
+ z-index: 9999
+}
+
+.mdui-theme-layout-light #loading {
+background-color: Seashell;
+}
+
+.mdui-theme-layout-dark #loading {
+background-color: #424242;
+}
+
+#loading_bg{
+  background-color: rgba(0,0,0,0.7);
+}
+
+
+.cs-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.cs-loader-inner {
+  transform: translateY(-50%);
+  top: 50%;
+  position: absolute;
+  width: calc(100% - 200px);
+  color: 	CornflowerBlue;
+  padding: 0 100px;
+  text-align: center;
+}
+
+.cs-loader-inner label {
+  font-size: 20px;
+  opacity: 0;
+  display:inline-block;
+}
+
+@keyframes lol {
+  0% {
+    opacity: 0;
+    transform: translateX(-300px);
+  }
+  33% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  66% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+}
+
+.cs-loader-inner label:nth-child(5) {
+
+  animation: lol 2s 100ms infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(4) {
+
+  animation: lol 2s 200ms infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(3) {
+
+  animation: lol 2s 300ms infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(2) {
+
+  animation: lol 2s 400ms infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(1) {
+  
+  animation: lol 2s 500ms infinite ease-in-out;
+}
+

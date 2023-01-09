@@ -1,0 +1,321 @@
+/**
+
+    _    _  __    _    ____  _   _ ___ 
+   / \  | |/ /   / \  / ___|| | | |_ _|
+  / _ \ | ' /   / _ \ \___ \| |_| || | 
+ / ___ \| . \  / ___ \ ___) |  _  || | 
+/_/   \_\_|\_\/_/   \_\____/|_| |_|___|
+
+ * [Romanticism]
+ * romanticism.aka.css 主样式表文件
+ * @version 1.0
+**/
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: LightGrey;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: Gray;
+  border-radius: 10px;
+transition: 0.5s color;
+
+}
+::-webkit-scrollbar-thumb:hover {
+  background: DimGray;
+}
+
+body{
+background-color:Seashell; 
+font-family: 'Noto Serif SC', serif;
+font-weight:normal;
+}
+
+.blur{
+backdrop-filter: saturate(180%) blur(15px);
+-webkit-backdrop-filter: saturate(180%) blur(15px);
+}
+
+.mdui-theme-layout-light .blur{
+background: rgba(255, 255, 255, 0.72);
+}
+
+.mdui-theme-layout-dark .blur{
+background: rgba(95, 93, 93, 0.72);
+}
+
+p{font-size: 17px;}
+
+.mdui-typo h1{
+    position: relative;
+    white-space: nowrap;
+    font-weight:900;
+}
+
+.mdui-typo h1::before {
+    content: "";
+    position: absolute;
+    height: 12px;
+    width: 66px;
+    bottom: 2px;
+    z-index:-1;
+    background-color: CornflowerBlue;
+    opacity: 0.5;
+    transform: skew(-35deg);
+    transition: opacity .2s ease;
+    border-radius: 3px 8px 10px 6px;
+    transition: 0.1s ease background-color;
+}
+
+.mdui-typo h3{
+     font-weight:900;
+}
+
+.mdui-typo h4{
+     font-weight:900;
+}
+
+.mdui-typo h2{
+    position: relative;
+    white-space: nowrap;
+   font-weight:900;
+}
+
+.mdui-typo h2::before {
+    content: "";
+    position: absolute;
+    height: 12px;
+    width: 50px;
+    bottom: 2px;
+    z-index:-1;
+    background-color: lightblue;
+    opacity: 0.5;
+    transform: skew(-35deg);
+    transition: opacity .2s ease;
+    border-radius: 3px 8px 10px 6px;
+    transition: 0.1s ease background-color;
+}
+
+.mdui-typo h3{
+font-weight:900;
+}
+
+.article hr{
+width:66%;
+border:none;
+border-top:5px dashed #DCDCDC;
+}
+
+.hr hr{
+width:88%;
+border:none;
+border-top:2px dashed #DCDCDC;
+}
+
+.article img{
+height:anto;
+width:100%;
+border-radius: 10px;
+}
+
+.articleimg{
+ background-repeat:no-repeat; 
+background-position: center;
+background-size: cover;
+-webkit-background-size: cover;
+-o-background-size: cover;
+}
+
+.articlecard{
+width:auto; 
+height:50vh;
+min-height:350px;
+}
+
+.articlelistcard{
+width:auto; 
+height:30vh;
+max-height:350px;
+min-height:250px;
+}
+
+.indeximg{
+ background-repeat:no-repeat; 
+background-position: 100% 100%;
+background-size: cover;
+-webkit-background-size: cover;
+-o-background-size: cover;
+}
+
+.titlegap{
+  letter-spacing: 2px;
+font-weight:900;
+}
+
+.indeximgcard{
+width:auto; 
+height:80vh;
+min-height:400px;
+}
+
+ li{ 
+list-style: none;
+}
+
+a{
+text-decoration: none;
+}
+
+a:hover{
+text-decoration: none;
+}
+
+::-moz-selection{background:lightblue; color:#FF4081;}
+::selection {background:lightblue; color:#FF4081;}
+
+.chameleon {
+    transition: 0.5s color;
+}
+
+.chameleon:hover {
+    color: CornflowerBlue;
+}
+
+ .title{
+font-family: 'Noto Serif SC', serif;
+font-weight:900;
+text-decoration: none;
+}
+
+ .subtitle{
+font-size: 15px;
+
+}
+
+.yuan{
+border-radius: 15px;
+}
+
+.toup{
+animation-name: toup;
+animation-duration: 0.8s;
+}
+
+ @keyframes toup{
+        from {top: 200px;opacity: 0;}
+        to {top: 0px;opacity: 1;}
+        }
+
+.footer{
+ opacity: .8;
+}
+
+.show{
+animation-name: show;
+animation-duration: 1.3s;
+}
+
+ @keyframes show{
+        from {opacity: 0;}
+        to {opacity: 1;}
+        }
+
+.underline{
+  border-bottom: 2px solid transparent;
+}
+
+.underline:hover {
+border-bottom: 2px solid;
+}
+
+.easysee{
+text-shadow: 0 0 16px black; 
+}
+
+.comment-list .adminsign{
+    color:CornflowerBlue;
+    display:inline-block;
+    border-radius:5px;
+    padding-left:2px;
+    padding-right:2px;
+    border: 3px solid rgba(136, 132, 132, 0.199);
+}
+
+.fancybox {
+    text-decoration: none;
+}
+
+.pageupdown{
+    padding:10px;
+    border-radius:10px;
+    display:inline-block;
+    border: 2px solid rgba(136, 132, 132, 0.199);
+    line-height: 25px;
+}
+
+.mdui-theme-layout-light .prev{
+    color:black;
+}
+.mdui-theme-layout-dark .prev{
+    color:white;
+}
+
+.mdui-theme-layout-light .next{
+    color:black;
+}
+.mdui-theme-layout-dark .next{
+    color:white;
+}
+
+/*视频挂载*/
+
+.iframe_video {
+    position: relative;
+    width: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+    .iframe_video {
+        height: 15em;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .iframe_video {
+        height: 20em;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .iframe_video {
+        height: 30em;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .iframe_video {
+        height: 40em;
+    }
+}
+
+.iframe_cross {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%
+}
+
+.iframe_cross iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0
+}
+
+

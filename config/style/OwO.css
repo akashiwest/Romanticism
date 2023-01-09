@@ -1,0 +1,6 @@
+.OwO-logo{float:left;cursor:pointer;font-weight:600;}
+.OwO .OwO-body .OwO-items {overflow: auto;font-size: 0;text-align:left}
+.OwO .OwO-body .OwO-items .OwO-item {padding: 5px 10px;display: inline-block;-webkit-transition: .3s;transition: .3s;cursor:pointer;}
+.OwO .OwO-body .OwO-items .OwO-item img {height: 30px;box-shadow: none!important;}
+.OwO .OwO-body .OwO-items .OwO-item:hover{transform:scale(1.3)}
+.OwO.OwO-open>.OwO-body>.OwO-items{max-height:200px!important;margin:10px 0!important;padding:10px!important;transition: max-height .8s,margin .8s,padding .8s;}
