@@ -31,7 +31,7 @@ Demo: [明石博客](https://blog.imakashi.top/)
 
 ## 使用方法
 
-- 支持 typecho 1.1以上版本（1.1以下的版本我没测试过）
+- 支持 typecho 1.1及以上版本（1.1以下的版本我没测试过）
 - 支持 Firefox Chrome Safari 等现代浏览器（当然不支持 IE）
 
 在 Github 下载本主题压缩包，解压后确保文件夹名称为 "Romanticism", 将此文件夹放入主题目录中。
