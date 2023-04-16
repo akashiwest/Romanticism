@@ -58,7 +58,7 @@
 <?php if ($this->have()): ?>
 	<?php while($this->next()): ?>
 
-<div class="mdui-shadow-0 yuan mdui-ripple articlelistcard mdui-card mdui-valign mdui-text-center articleimg" style="background-image: url('<?php $this->fields->AKAROMarticleimg(); ?>');background-color: <?php $this->fields->AKAROMarticlecolor(); ?>;">
+<div class="yuan mdui-ripple articlelistcard mdui-card mdui-valign mdui-text-center articleimg mdui-hoverable" style="background-image: url('<?php $this->fields->AKAROMarticleimg(); ?>');background-color: <?php $this->fields->AKAROMarticlecolor(); ?>;">
   <div class="mdui-card-media-covered articlelistcard">
       <div class="mdui-card-primary easysee">
         <br><br>
@@ -78,7 +78,7 @@
 <?php endwhile; ?>
 <?php else: ?>
 
-	<div class="mdui-shadow-0 yuan mdui-ripple mdui-hoverable articlelistcard mdui-card mdui-valign mdui-text-center articleimg" style="background-color: MistyRose;">
+	<div class="yuan mdui-ripple articlelistcard mdui-card mdui-valign mdui-text-center articleimg mdui-hoverable" style="background-color: MistyRose;">
   <div class="mdui-card-media-covered articlelistcard">
       <div class="mdui-card-primary easysee">
       <br><br>
