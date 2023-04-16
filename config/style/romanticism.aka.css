@@ -272,6 +272,44 @@ text-shadow: 0 0 16px black;
     color:white;
 }
 
+.large-anime {
+    position: relative;
+    display: inline-block;
+    height: auto;
+    width: auto;
+    display:inline-block;
+    -webkit-transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.large-anime::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    -webkit-transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.large-anime:hover {
+    -webkit-transform: scale(1.15, 1.15);
+    transform: scale(1.15, 1.15);
+    opacity: 1;
+     z-index: 2;
+}
+.large-anime:hover::after {
+      opacity: 1;
+} 
+
+.link img{
+height:70%;
+width:70%;
+border: 5px solid rgb(255, 255, 255);
+}
+
+
 /*视频挂载*/
 
 .iframe_video {
@@ -317,5 +355,3 @@ text-shadow: 0 0 16px black;
     left: 0;
     top: 0
 }
-
-
