@@ -51,9 +51,9 @@
             $output .= '<h1>'. $year .' 年</h1>'; 
         }
        
-        $output .= '<p><span class="mdui-typo-caption-opacity">'.date('n月d日',$archives->created).' </span><a href="'.$archives->permalink .'"> '. $archives->title .'</a></p>';
+        $output .= '<p><span class="mdui-typo-caption-opacity">'.date('n月d日',$archives->created).' </span><a href="'.$archives->permalink .'"><b> '. $archives->title .'</b></a></p>';
     endwhile;
-    echo '<b>当前共有 '.$count.' 篇文章</b><br><br><hr>';
+    echo '<h3>当前共有 '.$count.' 篇文章</h3><br><hr>';
     echo $output;
 ?>    
 
