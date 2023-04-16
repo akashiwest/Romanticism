@@ -34,8 +34,8 @@ error_reporting(0);
 
     <link href="<?php $this->options->AKAROMsign(); ?>" rel="icon" type="image/x-icon"><!--图标-->
 
-    <link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@900&display=swap" rel="stylesheet"><!--思源宋体-->
-    <link href="https://fonts.loli.net/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@900&display=swap" rel="stylesheet"><!--思源宋体-->
+    <link href="https://fonts.font.im/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
 
     <title><?php $this->archiveTitle(array(
             'category'  =>  _t('分类 %s 下的文章'),
