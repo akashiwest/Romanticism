@@ -37,14 +37,14 @@
 
 
 <h1>我的朋友们</h1>
-<div class="mdui-row-xs-1 mdui-grid-list">
+<div class="mdui-row-xs-1 mdui-row-sm-1 mdui-row-md-1 mdui-row-lg-2 mdui-row-xl-2"> 
 
 <?php //我写不来瞎写的，大佬手下留情！(*/ω＼*)
 $friendlink = $this->content;
 $friendlink = str_replace('[icon]','
 
-  <div class="mdui-col">
-    <div class="yuan mdui-card mdui-shadow-0 mdui-m-y-1">
+  <div class="mdui-col large-anime">
+    <div class="yuan mdui-card mdui-hoverable mdui-m-y-1">
       <div class="mdui-card-header">
         <img class="mdui-card-header-avatar" src="
 
@@ -52,14 +52,14 @@ $friendlink = str_replace('[icon]','
   $friendlink = str_replace('[link]','
 
         "/>
-        <div class="mdui-card-header-title"><a target="_blank" href="
+        <div class="mdui-card-header-title"><b><a target="_blank" href="
 
   ',$friendlink);
   $friendlink = str_replace('[name]','">',$friendlink);
 
   $friendlink = str_replace('[desc]','
 
-        </a></div>
+        </a></b></div>
         <div class="mdui-card-header-subtitle">
 
         ',$friendlink);
@@ -68,14 +68,13 @@ $friendlink = str_replace('[icon]','
       </div>
     </div>
   </div>
-<br><br>
+
 
   ',$friendlink);
 echo $friendlink;
 ?>
 
 </div>
-<br>
 
 <h1>哈喽，来交个朋友吧！</h1>
 
