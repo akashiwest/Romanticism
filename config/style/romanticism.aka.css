@@ -176,8 +176,8 @@ a:hover{
 text-decoration: none;
 }
 
-::-moz-selection{background:lightblue; color:#FF4081;}
-::selection {background:lightblue; color:#FF4081;}
+::-moz-selection{background:#ecf0f1; color:CornflowerBlue;}
+::selection {background:#ecf0f1; color:CornflowerBlue;}
 
 .chameleon {
     transition: 0.5s color;
