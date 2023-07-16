@@ -33,7 +33,8 @@ transition: 0.5s color;
 body{
 background-color:Seashell; 
 font-family: 'Noto Serif SC', serif;
-font-weight:normal;
+font-weight: 400;
+font-display: swap;
 }
 
 .blur{
