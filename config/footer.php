@@ -9,7 +9,7 @@
 
  * [Romanticism]
  * footer.php 页脚文件
- * @version 1.0
+ * @version 2.0
 **/
 ?>
 
@@ -18,22 +18,23 @@
       <span class="title">
         &copy;<?php echo date("Y"); ?> - <?php $this->options->title(); ?>
         <br>
-        <?php if($this->options->AKAROMfootericp()):?>
-            <?php $this->options->AKAROMfootericp(); ?>
+        <?php if($this->options->AKAROMfootericp):?>
+            <?php echo'<br>';
+                  echo $this->options->AKAROMfootericp; ?>
             </span>
-            <br>
           <?php else: ?>
             </span>
         <?php endif;?>
          <br>
-      <small>Theme <b><a class="chameleon underline" onclick="window.location.href='https://blog.imakashi.top/archives/themeRomanticism.html'">Romanticism</a></b> by <a class="chameleon underline" onclick="window.location.href='https://imakashi.top/'"><b>Akashi</b></a>
+         <!-- 已经弄得很不显眼了，请不要删除以下信息 -->
+      <small style="opacity: .5;">Theme <b><a class="chameleon underline" onclick="window.location.href='https://blog.imakashi.top/archives/themeRomanticism.html'">Romanticism</a></b> by <a class="chameleon underline" onclick="window.location.href='https://imakashi.top/'"><b>Akashi</b></a>
       <br>
       Powered by <a class="chameleon underline" onclick="window.location.href='https://typecho.org'"><b>Typecho</b></a></small>
       <br><br>
     </div>
       
     <script src="<?php $this->options->themeUrl('config/mdui/js/mdui.min.js'); ?>"></script>
-    <script src="https://do.sep.cc/script/jquery.min.js"></script>
+    <script src="<?php $this->options->themeUrl('config/js/jquery.min.js'); ?>"></script>
     <script src="<?php $this->options->themeUrl('config/js/thememode.js'); ?>"></script>
     <script src="<?php $this->options->themeUrl('config/js/returntop.js'); ?>"></script>
     <script src="<?php $this->options->themeUrl('config/js/prism.highlight.js'); ?>"></script>
@@ -60,5 +61,6 @@
 }
     </script>
 <?php $this->footer(); ?>
+</div>
 </body>
 </html>

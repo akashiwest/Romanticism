@@ -9,37 +9,40 @@
 
  * [Romanticism]
  * functions.php 主题基本配置文件
- * @version 1.0
+ * @version 2.0
 **/
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 function themeConfig($form) {  //后台设置界面
 ?>
-    <h1>主题设置 - Romanticism<sup>V1.0</sup></h1>
+    <h2>主题设置 - Romanticism</h2>
 
-    <p>请前往Typecho自带的设置界面来设置博客名称、博客副标题与博客描述。</p>
+    <p>请前往Typecho自带的设置界面来设置博客名称与描述。</p>
     <?php
-    $AKAROMlogoUrl = new Typecho_Widget_Helper_Form_Element_Text('AKAROMlogoUrl', NULL, NULL, _t('设置您的头像'), _t('在这里填入一个图片 URL 地址。将会显示在侧边栏。'));
+    $AKAROMlogoUrl = new Typecho_Widget_Helper_Form_Element_Text('AKAROMlogoUrl', NULL, NULL, _t('设置您的头像'), _t('在这里填入一个图片 URL 地址，将会显示在侧边栏上部。'));
     $form->addInput($AKAROMlogoUrl);
 
-    $AKAROMindeximg = new Typecho_Widget_Helper_Form_Element_Text('AKAROMindeximg', NULL, NULL, _t('设置首页大图'), _t('在这里填入一个图片 URL 地址。'));
+    $AKAROMindeximg = new Typecho_Widget_Helper_Form_Element_Text('AKAROMindeximg', NULL, NULL, _t('设置首页主题图'), _t('在这里填入一个图片 URL 地址。'));
     $form->addInput($AKAROMindeximg);
 
-    $AKAROMsidebarimg = new Typecho_Widget_Helper_Form_Element_Text('AKAROMsidebarimg', NULL, NULL, _t('设置侧边栏顶图'), _t('在这里填入一个图片 URL 地址。'));
+    $AKAROMsidebarimg = new Typecho_Widget_Helper_Form_Element_Text('AKAROMsidebarimg', NULL, NULL, _t('设置侧边栏顶图'), _t('在这里填入一个图片 URL 地址，将会显示在侧边栏上部。'));
     $form->addInput($AKAROMsidebarimg);
 
-    $AKAROMsign = new Typecho_Widget_Helper_Form_Element_Text('AKAROMsign', NULL, NULL, _t('设置网站图标'), _t('在这里填入一个图片 URL 地址。将会显示在浏览器标签页的标题前。'));
+    $AKAROMsign = new Typecho_Widget_Helper_Form_Element_Text('AKAROMsign', NULL, NULL, _t('设置网站图标'), _t('在这里填入一个图片 URL 地址，将会显示在浏览器标签栏。'));
     $form->addInput($AKAROMsign);
 
-    $AKAROMLinksterms = new Typecho_Widget_Helper_Form_Element_Textarea('AKAROMLinksterms', NULL, NULL, _t('设置交换友情链接的要求'), _t('此段文字将会显示在“友情链接页”；<br>您可以填入例如 <b>1.不接受违法站点；2.先友后链</b> 等信息。<br>注意：请先创建一个空页面，在自定义模板中选择“友情链接页”。'));
+    $AKAROMinfobox = new Typecho_Widget_Helper_Form_Element_Text('AKAROMinfobox', NULL, NULL, _t('设置公告'), _t('输入一些公告或通知，将会显示在首页。'));
+    $form->addInput($AKAROMinfobox);
+
+    $AKAROMLinksterms = new Typecho_Widget_Helper_Form_Element_Textarea('AKAROMLinksterms', NULL, NULL, _t('设置交换友情链接的要求'), _t('此段文字将会显示在“友情链接页”；<br>您可以填入例如 <b>1.不接受违法站点；2.先友后链</b> 等信息。<br><b>注意：</b>请先创建一个空页面，在自定义模板中选择“友情链接页”。'));
     $form->addInput($AKAROMLinksterms);
 
-    $AKAROMfootericp = new Typecho_Widget_Helper_Form_Element_Text('AKAROMfootericp', NULL, NULL, _t('设置页脚备案信息'), _t('此处填入的信息将会显示在页脚备案信息区，请依据博客情况填写，无论是政府的 ICP 备案还是萌 ICP 备案都是可以的哦。不填则不显示备案信息。'));
+    $AKAROMfootericp = new Typecho_Widget_Helper_Form_Element_Text('AKAROMfootericp', NULL, NULL, _t('设置页脚备案信息'), _t('此处填入的信息将会显示在页脚备案信息区，请依据博客情况填写。不填则不显示备案信息。可以使用 HTML 标签'));
     $form->addInput($AKAROMfootericp);
 
     $AKAROMfucset = new Typecho_Widget_Helper_Form_Element_Checkbox('AKAROMfucset', 
-    array('AKAROMindexloading' => _t('当您的站点加载过慢时，开启此选项将会显示加载动画。')),
+    array('AKAROMindexloading' => _t('开启此选项将会在站点加载时显示加载动画。')),
     array('AKAROMindexloading'), _t('首页加载动画'));
     
     $form->addInput($AKAROMfucset->multiMode());
@@ -49,17 +52,31 @@ function themeFields($layout) { //文章自定义字段功能
     $AKAROMarticleimg = new Typecho_Widget_Helper_Form_Element_Text('AKAROMarticleimg', NULL, NULL, _t('设置文章头图'), _t('在这里填入一个图片 URL 地址。'));
     $layout->addItem($AKAROMarticleimg);
 
+    $AKAROMarticleCopyright = new Typecho_Widget_Helper_Form_Element_Select('AKAROMarticleCopyright', array(
+        'SA' => 'CC BY-NC-SA 版权协议',
+        'ND' => 'CC BY-NC-ND 版权协议',
+        'BAN' => '禁止转载',
+        'hide' => '不显示'
+    ), 'show', _t('版权声明'), _t('将会在文章底部显示版权声明。选择你需要的版权种类'));
+    $layout->addItem($AKAROMarticleCopyright);
+
+    $AKAROMarticleSMS = new Typecho_Widget_Helper_Form_Element_Select('AKAROMarticleSMS', array(
+        'default' => '长文章（默认）',
+        'sms' => '短讯'
+    ), 'show', _t('文章类型'), _t('当设置为 “短讯” 后则在首页拥有一个不一样的外观，适合一小段文字与单图片'));
+    $layout->addItem($AKAROMarticleSMS);
+
     $AKAROMarticlecolor = new Typecho_Widget_Helper_Form_Element_Text('AKAROMarticlecolor', NULL, NULL, _t('设置文章头图底色'), _t('当没有文章头图时设置此项使样式美观。请填入英文或 RGB 颜色名。<br><br><b>明石精选低饱和度颜色</b><br>LightCyan - 青色<br>Lavender - 淡紫色<br>OldLace - 黄灰白色<br>MistyRose - 浅玫瑰色'));
     $layout->addItem($AKAROMarticlecolor);
 }
 
-function themeInit($comment) { //应该是验证码相关功能，勿删
+function themeInit($comment) { //验证码相关功能，勿删
     $comment = AKAROM_simple_captcha($comment, $post, $result);
 }
 
 function Fancybox($content){ //Fancybox图片灯箱功能
-    //以下参考自 Skywt 开发的 Daydream 主题（https://github.com/Skywt2003/Daydream），感谢大佬，开放互联网精神万岁。
-    $content = preg_replace("/<img src=\"([^\"]*)\" alt=\"([^\"]*)\" title=\"([^\"]*)\">/i", "<a data-fancybox=\"gallery\" href=\"\\1\" data-caption=\"\\3\"><img src=\"\\1\" alt=\"\\2\" title=\"\\3\"></a>", $content);
+    //以下参考自 Skywt 开发的 Daydream 主题（https://github.com/Skywt2003/Daydream），感谢大佬。
+    $content = preg_replace("/<img src=\"([^\"]*)\" alt=\"([^\"]*)\" title=\"([^\"]*)\">/i", "<a data-fancybox=\"gallery\" href=\"\\1\" data-caption=\"\\3\"><img class=\"yuan\" src=\"\\1\" alt=\"\\2\" title=\"\\3\"></a>", $content);
     return $content;
 }
 

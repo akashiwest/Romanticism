@@ -9,7 +9,7 @@
 
  * [Romanticism]
  * comments.php 评论区配置文件
- * @version 1.0
+ * @version 2.0
  * 参考自 Typecho 自带的默认主题
 **/
 ?>
@@ -18,13 +18,13 @@
  $GLOBALS['theme_url'] = $this->options->themeUrl;
 ?>
 
-<!--展示评论区-->
 
+<!--展示评论区-->
 <?php function threadedComments($comments, $options) {
     $commentClass = '';
     if ($comments->authorId) {
         if ($comments->authorId == $comments->ownerId) {
-            $commentClass = '<b><span class="adminsign"> 博主 </span></b>';  //如果是文章作者的评论添加样式
+            $commentClass = '<b><span class="btnyuan adminsign"> 博主 </span></b>';  //如果是文章作者的评论添加样式
         }else{
         }
     } 
@@ -41,52 +41,48 @@ if ($comments->levels > 0) {
 }
 $comments->alt(' comment-odd', ' comment-even');
 ?>">
-    <div id="<?php $comments->theId(); ?>">
-        <div class="comment-author ">
+<div id="<?php $comments->theId(); ?>">
+    <div class="comment-author ">
         <span itemprop="image">
-
-<?php //Gravatar 头像源
-    $mail=$comments->mail;
-    $mail=md5($mail);
-    $headicon='https://cdn.sep.cc/avatar/'.$mail.'.png';
-    echo '<img src="'.$headicon.'" height="46px" style="border-radius:50%;float:left;margin-top:0px;margin-right:10px;margin-bottom:-2px">'; 
-?>
-</span>
-        <p><b><?php $comments->author(); ?></b><small class="mdui-typo-caption-opacity"><?php echo $commentClass; ?><?php getOs($comments->agent); ?><?php getBrowser($comments->agent); ?></small></p>
-        </div>
-       
-        <div class="mdui-typo-caption-opacity"><?php $comments->date('y-m-d H:i'); ?><b><?php $comments->reply(' （回复）'); ?></b></div>
-        
-        <?php //引入带表情的评论数据
-          $cos = preg_replace('#\@OwO\((.*?)\)#','<img style="width:26px;height:auto;" src="'.$GLOBALS['theme_url'].'/config/style/img/bili/$1.webp">',$comments->content);
-          echo $cos;
-          ?>
+            <?php //Gravatar 头像源
+                $mail=$comments->mail;
+                $mail=md5($mail);
+                $headicon='https://cravatar.cn/avatar/'.$mail.'.png';
+                echo '<img class="headicon" src="'.$headicon.'" height="46px" style="border-radius:50%;float:left;margin-top:0px;margin-right:10px;margin-bottom:-2px">'; 
+            ?>
+        </span>
+    <p><b><?php $comments->author(); ?></b><small class="mdui-typo-caption-opacity"><?php echo $commentClass; ?><?php getOs($comments->agent); ?>   <?php getBrowser($comments->agent); ?></small></p>
     </div>
-    <div class="content">
+       
+    <div class="mdui-typo-caption-opacity"><?php $comments->date('y-m-d H:i'); ?><b><?php $comments->reply(' （回复）'); ?></b></div>
+        <?php //引入带表情的评论数据
+        $cos = preg_replace('#\@OwO\((.*?)\)#','<img style="width:26px;height:auto;" src="'.$GLOBALS['theme_url'].'/config/style/img/bili/$1.webp">',$comments->content);
+        echo $cos;
+        ?>
+</div>
+<div class="content">
     <hr>
-    
 </div>
 <?php if ($comments->children) { ?>
-    <div class="comment-children">
-        <?php $comments->threadedComments($options); ?>
-    </div>
+<div class="comment-children">
+    <?php $comments->threadedComments($options); ?>
+</div>
 <?php } ?>
-<br>
 </li>
 
 <?php } ?>
 
-<!--撰写评论区-->
 
+<!--撰写评论区-->
 <div id="comments">
-    <h1><i class="mdui-icon material-icons">comment</i>评论区</h1>
+    <h1><i class="mdui-icon material-icons">comment</i>&nbsp;评论区</h1>
     <?php $this->comments()->to($comments); ?>
 
     <?php if($this->allow('comment')): ?>
     <div id="<?php $this->respondId(); ?>" class="respond">
         <div class="cancel-comment-reply">
         <?php $comments->cancelReply(); ?>
-        </div>
+    </div>
     
     	<h3 id="response"><?php _e('添加新评论'); ?></h3>
     	<form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" role="form">
@@ -111,7 +107,7 @@ $comments->alt(' comment-odd', ' comment-even');
               <?php $this->need('config/OwO.php'); ?>
                 <div class="mdui-textfield mdui-textfield-floating-label">
               <i class="mdui-icon material-icons">textsms</i>
-                <textarea class="mdui-textfield-input" name="text" id="textarea" value="<?php $this->remember('text'); ?>" placeholder="大佬大佬，这里这里，快来评论呀！" required/></textarea>
+                <textarea class="mdui-textfield-input" name="text" id="textarea" value="<?php $this->remember('text'); ?>" placeholder="说点什么吧~" required/></textarea>
                 <div class="mdui-textfield-error">内容不能为空</div>
             </div>
 
@@ -143,29 +139,28 @@ $comments->alt(' comment-odd', ' comment-even');
                 <?php AKAROM_simple_captcha_math();?>
                 </div>
              </div>
-
+         
             <?php endif; ?>
-    		<button class="yuan blur mdui-btn mdui-ripple mdui-btn-block" type="submit" class="submit">发表评论</button>
+    		<button class="mdui-shadow-1 blur mdui-btn btnyuan mdui-center" type="submit" class="submit"> &nbsp;&nbsp;发表评论&nbsp;&nbsp; </button>
             <br><br>
     	</form>
     </div>
     <?php else: ?>
-    <h3>
-    <p>当前评论区已关闭</p>
-    <img class="yuan" src="<?php $this->options->themeUrl('config/style/img/CommentsOff.webp'); ?>"><!--感谢瑞士学者张维为老师客串！-->
+    <h3 class="mdui-valign">
+      <i class="mdui-icon material-icons">error_outline</i>&nbsp;当前评论区已关闭
     </h3>
     <?php endif; ?>
      <hr>
     <?php if ($comments->have()): ?>
 	<h3><?php $this->commentsNum( _t('仅有一条评论'), _t('已有 %d 条评论')); ?></h3>
     <?php $comments->listComments(); ?>
-
-    <?php $comments->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
-    
+    <span calss="outlineborder">
+    <?php $comments->pageNav('< 前一页', '后一页 >'); ?>
+    </span>
     <?php endif; ?>
     <?php if (!($comments->have())): ?>
       <?php if($this->allow('comment')): ?>
-        <h3>咱快来抢个沙发吧！</h3>
+        <h3 class="mdui-valign"><i class="mdui-icon material-icons">star_outline</i>&nbsp;咱快来抢个沙发吧！</h3>
         <?php endif; ?>
     </hr>
         <?php endif; ?>

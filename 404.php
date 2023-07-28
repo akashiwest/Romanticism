@@ -9,7 +9,7 @@
 
  * [Romanticism]
  * 404.php 错误页
- * @version 1.0
+ * @version 2.0
 **/
 ?>
 
@@ -19,10 +19,9 @@
 <div class="mdui-card-primary mdui-valign show" style="height:50vh;width:auto;">
       <div class="mdui-card-primary mdui-center">
 	  <br><br><br><br><br><br><br><br><br><br>
-  <h1>
-	来到了空无一物的荒原
+  <h1>这里是空荡的原野...</h1><p class="chameleon subtitle"><a class="chameleon underline " onclick="window.location.href='<?php $this->options ->siteUrl(); ?>'">返回首页</a></p>
    <br>
-      <p class="chameleon subtitle"><a class="chameleon underline" onclick="window.location.href='<?php $this->options ->siteUrl(); ?>'">返回首页</a></p>
+      
 	</h1>
     </div>
 </div>
