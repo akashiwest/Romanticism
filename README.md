@@ -96,7 +96,7 @@ Demo: [明石博客](https://blog.imakashi.top/)
 
 ## 版权
 
-Romanticism Version 1.0
+Romanticism Version 2.0
 
 ![GitHub](https://img.shields.io/github/license/bhaoo/cuckoo?style=flat-square)
 
