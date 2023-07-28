@@ -1,8 +1,8 @@
-![主题图](https://blog.imakashi.top/upload/themeRomanticism/screenshot.jpg)
+![主题图](https://pic1.zhimg.com/80/v2-dc5c645a224ebfebda1e546d0eab21f4_r.jpg)
 # Romanticism(浪漫主义)
 一款简洁的 typecho 主题
 
-当前版本：V1.0
+当前版本：V2.0
 
 **“在明石的简洁设计中捕捉来自日常生活中的浪漫主义。”**
 
@@ -16,7 +16,7 @@ Demo: [明石博客](https://blog.imakashi.top/)
 > 
 > - 全局思源宋体，适合文字阅读；
 > 
-> - 完全响应式，什么设备访问都合适（MDUI 框架自带）；
+> - 完全响应式，什么设备访问都合适；
 > 
 > - 代码高亮，为你的代码锦上添花；
 > - 原生自带图片灯箱，快让朋友们来欣赏你发的照片吧；
@@ -27,7 +27,7 @@ Demo: [明石博客](https://blog.imakashi.top/)
 > 
 > -  手动深色模式，夜间阅读保护视力；
 > 
-> -  还有文章归档页、支持 Gravatar 头像、自带无插件友链功能、评论UA等等功能。
+> -  还有文章归档页、“短讯” 、Gravatar 头像、自带无插件友链页面、评论UA等等功能。
 
 ## 使用方法
 
