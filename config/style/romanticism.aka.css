@@ -45,6 +45,19 @@ body{
     backdrop-filter: saturate(180%) blur(15px);
     -webkit-backdrop-filter: saturate(180%) blur(15px);
 }
+.mdui-tooltip{
+    backdrop-filter: saturate(180%) blur(15px);
+    -webkit-backdrop-filter: saturate(180%) blur(15px);
+    box-shadow: 0 0 2px black; 
+}
+.mdui-theme-layout-light .mdui-tooltip{
+    background: rgba(255, 255, 255, 0.72);
+    color:#252525;
+}
+.mdui-theme-layout-dark .mdui-tooltip{
+    background: rgba(95, 93, 93, 0.72);
+    color:#f0f0f0;
+}
 
 /*加载动画*/
 #loading {
@@ -87,12 +100,18 @@ body{
 .btnyuan{
     border-radius: 10px;
 }
+.mdui-tooltip{
+    border-radius: 10px;
+}
 @media(max-width:420px){
     .yuan{
         border-radius: 15px;
     }
     .btnyuan{
         border-radius: 8px;
+    }
+    .mdui-tooltip{
+    border-radius: 8px;
     }
 }
 
@@ -486,5 +505,3 @@ p{
     left: 0;
     top: 0
 }
-
-
