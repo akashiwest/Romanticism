@@ -27,7 +27,7 @@
         <?php endif;?>
          <br>
          <!-- 已经弄得很不显眼了，请不要删除以下信息 -->
-      <small style="opacity: .5;">Theme <b><a class="chameleon underline" onclick="window.location.href='https://blog.imakashi.top/archives/themeRomanticism.html'">Romanticism</a></b> by <a class="chameleon underline" onclick="window.location.href='https://imakashi.top/'"><b>Akashi</b></a>
+      <small style="opacity: .5;">Theme <b><a class="chameleon underline" onclick="window.location.href='https://imakashi.eu.org/blog/archives/themeRomanticism.html'">Romanticism</a></b> by <a class="chameleon underline" onclick="window.location.href='https://imakashi.eu.org/'"><b>Akashi</b></a>
       <br>
       Powered by <a class="chameleon underline" onclick="window.location.href='https://typecho.org'"><b>Typecho</b></a></small>
       <br><br>
