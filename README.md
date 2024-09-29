@@ -6,7 +6,7 @@
 
 **“在明石的简洁设计中捕捉来自日常生活中的浪漫主义。”**
 
-Demo: [明石博客](https://blog.imakashi.top/)
+Demo: [明石博客](https://imakashi.eu.org/blog/)
 
 
 
@@ -73,8 +73,8 @@ Demo: [明石博客](https://blog.imakashi.top/)
  [desc]A tecnology blog.
  [end]
 
- [icon]https://blog.imakashi.top/avatar.png
- [link]https://blog.imakashi.top
+ [icon]https://mono.imakashi.eu.org/overall/headicon2.webp
+ [link]https://imakashi.eu.org/blog
  [name]明石博客
  [desc]一个互联网海洋中的小岛
  [end]
