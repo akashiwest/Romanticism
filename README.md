@@ -1,4 +1,4 @@
-![主题图](https://pic1.zhimg.com/80/v2-dc5c645a224ebfebda1e546d0eab21f4_r.jpg)
+![主题图](https://imakashi.eu.org/blog/Romanticism2theme.webp)
 # Romanticism(浪漫主义)
 一款简洁的 typecho 主题
 
