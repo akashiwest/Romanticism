@@ -100,4 +100,4 @@ Romanticism Version 2.0
 
 ![GitHub](https://img.shields.io/github/license/bhaoo/cuckoo?style=flat-square)
 
-Copyright©2022-2023 [Akashi](https://imakashi.top), under GPL-3.0 License
+Copyright©2022-2024 [Akashi](https://imakashi.eu.org), under GPL-3.0 License
