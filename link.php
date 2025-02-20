@@ -11,8 +11,8 @@
  *
  * @package custom
  * @author 明石
- * @version 2.0
- * @link https://blog.imakashi.top/
+ * @version 2.1
+ * @link https://imakashi.eu.org/
  */
 ?>
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
@@ -26,7 +26,19 @@
     </div>
   </div>
   <div class="articlecardshadow"></div>
-  <div class="articlecardimg" style="background-image: url('<?php $this->fields->AKAROMarticleimg(); ?>');background-color: <?php $this->fields->AKAROMarticlecolor(); ?>"></div>
+  <div class="articlecardimg"
+
+  style="
+
+  <?php if ($this->fields->AKAROMarticleimg != null): ?>
+      background-image: url('<?php $this->fields->AKAROMarticleimg(); ?>');
+  <?php else: ?>
+      background-image: url('<?php $randomNum = mt_rand(1, 12);$this->options->themeUrl("config/style/img/default/cover/{$randomNum}.webp"); ?>');
+  <?php endif; ?>
+
+  ">
+    
+</div>
 </div>
 
 <!--主布局容器开始-->
@@ -42,6 +54,22 @@
 <div class="mdui-row-xs-1 mdui-row-sm-1 mdui-row-md-1 mdui-row-lg-2 mdui-row-xl-2"> 
 
 <?php //我写不来瞎写的，大佬手下留情！(*/ω＼*)
+if($this->content == null){
+  ?>
+  <div class="blur btnyuan mdui-card mdui-hoverable mdui-m-y-1">
+      <div class="mdui-card-header">
+        <img class="mdui-card-header-avatar" onclick="window.location.href='<?php $this->options ->siteUrl('/admin'); ?>'" title="headicon" src="<?php if(empty($this->options->AKAROMlogoUrl)): ?><?php $this->options->themeUrl('config/style/img/default/user.jpg'); ?><?php else: ?><?php $this->options->AKAROMlogoUrl(); ?><?php endif; ?>">
+        <div class="mdui-card-header-title">
+          <b><a target="_blank" href="<?php $this->options ->siteUrl(); ?>">
+            <?php $this->options->title(); ?>
+          </b></a></div>
+        <div class="mdui-card-header-subtitle">
+          <?php $this->options->description(); ?>
+        </div>
+      </div>
+    </div>
+    <?php
+}else{
 $friendlink = $this->content;
 $friendlink = str_replace('[icon]','
 
@@ -74,6 +102,7 @@ $friendlink = str_replace('[icon]','
 
   ',$friendlink);
 echo $friendlink;
+}
 ?>
 
 </div>
@@ -88,7 +117,7 @@ echo $friendlink;
    <?php endif; ?>
      <b>我的信息</b><br>
      博客标志：<?php $this->options->AKAROMlogoUrl(); ?><br>
-     地址：<?php $this->options ->siteUrl(); ?><br>
+     地址：<?php empty($this->options->AKAROMLinkstermsUrl) ? $this->options->siteUrl() : $this->options->AKAROMLinkstermsUrl(); ?><br>
      标题：<?php $this->options->title() ?><br>
      描述：<?php $this->options->description() ?><br><br>
      <b>交换的格式</b><br>
@@ -103,8 +132,20 @@ echo $friendlink;
 
 </div>
 <div class="hr mdui-typo">
-<hr>
-<p class="copyright">· 内容最后更新时间为：<?php echo date('Y年m月d日H时' , $this->modified); ?></p>
+<hr style="margin-bottom: 10px;">
+
+
+<?php if($this->user->hasLogin()): ?>
+  <span class="akarom-alter-button-valign" onclick="window.open('<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php $this->cid(); ?>', '_blank')">
+    <span class="akarom-alter-button blur yuan mdui-center">
+      <i class="mdui-icon material-icons">border_color</i><b>编辑友情链接</b>
+    </span>
+  </span>
+  <br>
+<?php endif; ?>  
+<p class="copyright mdui-text-center">
+  页面最后更新时间为：<?php echo date('Y年m月d日 H时' , $this->modified); ?>
+</p>
 <hr>
 <?php $this->need('config/comments.php'); ?>
 <br>

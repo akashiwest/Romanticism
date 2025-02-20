@@ -9,26 +9,22 @@
 
  * [Romanticism]
  * 404.php 错误页
- * @version 2.0
+ * @version 2.1
 **/
 ?>
 
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('config/header.php'); ?>
-
-<div class="mdui-card-primary mdui-valign show" style="height:50vh;width:auto;">
-      <div class="mdui-card-primary mdui-center">
-	  <br><br><br><br><br><br><br><br><br><br>
-  <h1>这里是空荡的原野...</h1><p class="chameleon subtitle"><a class="chameleon underline " onclick="window.location.href='<?php $this->options ->siteUrl(); ?>'">返回首页</a></p>
-   <br>
+<div class="LDtrans notfoundpage">
+    <div class="mdui-card-primary mdui-valign show notfound-box">
+        <div class="mdui-card-primary mdui-center">
+	       <br><br><br><br><br><br><br><br><br><br>
+            <span>404</span><h1>这里是空荡的原野...</h1>
+            <br>
       
-	</h1>
+	       </h1>
+        </div>
     </div>
 </div>
 
-    <script type="text/javascript" src="<?php $this->options->themeUrl('config/mdui/js/mdui.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?php $this->options->themeUrl('config/js/thememode.js'); ?>"></script>
-
-<?php $this->footer(); ?>
-</body>
-</html>
+<?php $this->need('config/footer.php'); ?>

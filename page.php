@@ -10,8 +10,8 @@
  * Page
  * 独立页面内容输出
  * @author 明石
- * @version 2.0
- * @link https://blog.imakashi.top/
+ * @version 2.1
+ * @link https://imakashi.eu.org/
  */
 ?>
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
@@ -25,12 +25,36 @@
     </div>
   </div>
   <div class="articlecardshadow"></div>
-  <div class="articlecardimg" style="background-image: url('<?php $this->fields->AKAROMarticleimg(); ?>');background-color: <?php $this->fields->AKAROMarticlecolor(); ?>"></div>
+  <div class="articlecardimg"
+
+  style="
+  <?php if (($this->cid == 1) && ($this->fields->AKAROMarticleimg == null)): ?>
+      background-image: url('<?php $this->options->themeUrl('config/style/img/default/Romanticism2theme-empty.webp'); ?>');
+  <?php elseif ($this->fields->AKAROMarticleimg != null): ?>
+      background-image: url('<?php $this->fields->AKAROMarticleimg(); ?>');
+  <?php else: ?>
+      background-image: url('<?php $randomNum = mt_rand(1, 12);$this->options->themeUrl("config/style/img/default/cover/{$randomNum}.webp"); ?>');
+  <?php endif; ?>
+  ">
+
+  </div>
 </div>
 
 <!--主布局容器开始-->
 <div class="LDtrans">
 <div class="mdui-container">
+
+<div class="akarom-articletag akarom-articletag-style blur mdui-shadow-1"> 
+    <i class="mdui-list-item-icon mdui-icon material-icons">color_lens</i>
+    <div class="akarom-articletag-options">
+        <span class="akarom-hoverable" id="toggleFont">切换字体</span>
+        <b> · </b>
+        <span class="akarom-hoverable" id="decrease">A-</span> 
+        <b id="fontSize">18</b> 
+        <span class="akarom-hoverable" id="increase">A+</span>
+    </div>
+</div>
+  
 <br><!--内容开始-->
 <div class="yuan mdui-col-md-8 mdui-col-offset-md-2 mdui-card-primary toup">
 
@@ -42,17 +66,48 @@
 <br>
 </div>
 <div class="hr mdui-typo">
-<hr>
-<p class="copyright">· 内容最后更新时间为：<?php echo date('Y年m月d日H时' , $this->modified); ?>
+<hr style="margin-bottom: 10px;">
+
+
+<?php if($this->user->hasLogin()): ?>
+  <span class="akarom-alter-button-valign" onclick="window.open('<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php $this->cid(); ?>', '_blank')">
+    <span class="akarom-alter-button blur yuan mdui-center">
+      <i class="mdui-icon material-icons">border_color</i><b>编辑此页面</b>
+    </span>
+  </span>
+  <br>
+<?php else: ?>  
+<?php if (!empty($this->options->AKAROMrewardimg)): ?>
+  <?php if ((!empty($this->fields->AKAROMfucsetreward)) || !($this->fields->AKAROMfucsetreward)): ?>
+  <span class="akarom-alter-button-valign" mdui-dialog="{target: '#reward'}">
+    <span class="akarom-alter-button blur yuan mdui-center">
+      <i class="mdui-icon material-icons">thumb_up</i><b>赞赏文章</b>
+    </span>
+  </span>
+  <div class="mdui-dialog yuan blur" id="reward">
+  <div class="mdui-container mdui-center akarom-rewardbox">
+    <img class="btnyuan" src="<?php $this->options->AKAROMrewardimg(); ?>">
+  </div>
+</div>
+<br>
+<?php endif; ?> 
+<?php endif; ?> 
+
+<?php endif; ?>
+
+<p class="copyright mdui-text-center">
+  文章最后更新时间为：<?php echo date('Y年m月d日 H时' , $this->modified); ?>
 <?php if ($this->fields->AKAROMarticleCopyright != 'hide' && $this->fields->AKAROMarticleCopyright != null): ?>
   <?php if ($this->fields->AKAROMarticleCopyright == 'SA'): ?>
-    <br>· 本文章版权声明： 遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"> CC BY-NC-SA </a> 版权协议</p>
+    <br>本文章版权声明： 遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"> CC BY-NC-SA </a> 版权协议</p>
     <?php elseif ($this->fields->AKAROMarticleCopyright == 'ND'): ?>
-      <br>· 本文章版权声明： 遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"> CC BY-NC-ND </a> 版权协议</p>
+      <br>本文章版权声明： 遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"> CC BY-NC-ND </a> 版权协议</p>
     <?php else: ?>
-      <br>· 本文章版权声明： 禁止转载</p>
+      <br>本文章版权声明： <b>禁止转载</b></p>
   <?php endif; ?>
 <?php endif; ?>
+
+
 <hr>
 <?php $this->need('config/comments.php'); ?>
 <br>

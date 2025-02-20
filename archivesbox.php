@@ -11,8 +11,8 @@
  *
  * @package custom
  * @author 明石
- * @version 2.0
- * @link https://blog.imakashi.top/
+ * @version 2.1 - 250204
+ * @link https://imakashi.eu.org/
  */
 ?>
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
@@ -28,7 +28,17 @@
     </div>
   </div>
   <div class="articlecardshadow"></div>
-  <div class="articlecardimg" <?php if(($this->fields->AKAROMarticleimg) == null): ?>style="background-image: url('<?php $this->options->themeUrl('config/style/img/default/first.png'); ?>');" <?php else: ?> style="background-image: url('<?php $this->fields->AKAROMarticleimg(); ?>');background-color: <?php $this->fields->AKAROMarticlecolor(); ?>;" <?php endif; ?>></div>
+  <div class="articlecardimg"
+    style="
+
+    <?php if ($this->fields->AKAROMarticleimg != null): ?>
+        background-image: url('<?php $this->fields->AKAROMarticleimg(); ?>');
+    <?php else: ?>
+        background-image: url('<?php $randomNum = mt_rand(1, 12);$this->options->themeUrl("config/style/img/default/cover/{$randomNum}.webp"); ?>');
+    <?php endif; ?>
+
+    ">
+  </div>
 </div>
 
 <!--主布局容器开始-->
