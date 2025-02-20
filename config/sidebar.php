@@ -9,7 +9,7 @@
 
  * [Romanticism]
  * sidebar.php 边栏菜单文件
- * @version 2.0
+ * @version 2.1
 **/
 ?>
 
@@ -18,10 +18,10 @@
 <!--Sidebar Start-->
 <div class="mdui-drawer mdui-drawer-close blur" id="mainsidebar">
 
-<div class="mdui-grid-tile sidebarimg" style="background-image: url('<?php if(empty($this->options->AKAROMsidebarimg)): ?><?php $this->options->themeUrl('config/style/img/default/sidebar.png'); ?><?php else: ?><?php $this->options->AKAROMsidebarimg(); ?><?php endif; ?>');">
+<div class="mdui-grid-tile sidebarimg" style="background-image: url('<?php if(empty($this->options->AKAROMsidebarimg)): ?><?php $this->options->themeUrl('config/style/img/default/sidebar.webp'); ?><?php else: ?><?php $this->options->AKAROMsidebarimg(); ?><?php endif; ?>');">
   <img class="headicon" onclick="window.location.href='<?php $this->options ->siteUrl('/admin'); ?>'" title="headicon" src="<?php if(empty($this->options->AKAROMlogoUrl)): ?><?php $this->options->themeUrl('config/style/img/default/user.jpg'); ?><?php else: ?><?php $this->options->AKAROMlogoUrl(); ?><?php endif; ?>">
   <div class="mdui-grid-tile-actions">
-    <h3 class="easysee chameleon mdui-text-truncate" mdui-tooltip="{content: '<?php $this->options->title(); ?>'}">
+    <h3 class="easysee chameleon">
     <?php $this->options->title(); ?>
 </h3>
 <br>
@@ -48,7 +48,7 @@
             <?php $this->widget('Widget_Metas_Category_List')->to($category); ?>
             <?php while ($category->next()): ?>
                 <a href="<?php $category->permalink(); ?>" class="btnyuan mdui-list-item">
-                  <div class="mdui-list-item-content mdui-text-truncate"><?php $category->name(); ?></div>
+                  <div class="mdui-list-item-content"><?php $category->name(); ?></div>
                    <b><?php $category->count(); ?></b>
                 </a>
             <?php endwhile; ?>

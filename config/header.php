@@ -9,7 +9,8 @@
 
  * [Romanticism]
  * header.php 页首文件
- * @version 2.0
+ * @version 2.1
+ * @link https://imakashi.eu.org/
 **/
 ?>
 
@@ -28,7 +29,8 @@ error_reporting(0);
 
     <meta name="copyright" content="Copyright(C)<?php echo date('Y');?> <?php $this->options->title() ?>"/>
     <meta name="author" content="<?php $this->author(); ?>"/>
-    <meta name="TypechoTemplateInfo" content="Creator-Akashi.Nishikata, Link-imakashi.top, Release-2023/07/28">
+    <meta name="TypechoTemplateInfo" content="Creator: Akashi Nishikata; Link: imakashi.eu.org; Release: 2025-02">
+
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
 
@@ -44,20 +46,34 @@ error_reporting(0);
         ), '', ' - '); ?><?php $this->options->title(); ?></title>
 
     <!-- 使用url函数转换相关路径 -->
-    
     <link rel="stylesheet" href="<?php $this->options->themeUrl('config/mdui/css/mdui.min.css'); ?>">
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('config/style/romanticism.aka.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('config/style/romanticism.aka.css?v=2.1'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('config/style/prism.highlight.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('config/style/jquery.fancybox.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('config/style/icon.aka.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('config/style/OwO.css'); ?>">
+
+    <!-- 自定义CSS -->
+    <?php if(!empty($this->options->AKAROMcustomCss)): ?>
+        <style type="text/css">
+          <?php $this->options->AKAROMcustomCss(); ?>
+        </style>
+    <?php endif; ?>
+
 </head>
 <!--[if IE 9]>
-    <div class="browsehappy" role="dialog">当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a></div>
+    <div class="browsehappy" role="dialog">当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="https://browsehappy.com/">升级你的浏览器</a></div>
 <![endif]-->
 
 <body class="mdui-theme-layout-light mdui-theme-primary-blue mdui-theme-accent-red">
-<div class="mdui-appbar blur mdui-appbar-fixed mdui-shadow-1">
+
+  <script>
+    if (localStorage.romanticismTheme) {
+        document.body.classList.add("mdui-theme-layout-dark");
+      }
+  </script>
+
+<div class="mdui-appbar blur mdui-appbar-fixed mdui-shadow-0">
     <div class="mdui-toolbar">
       <a class="mdui-hidden-xs-down"></a>
       <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#mainsidebar', overlay: true}"><i class="mdui-icon material-icons">menu</i></button>
@@ -78,8 +94,19 @@ error_reporting(0);
         <input class="mdui-textfield-input" type="text" id="s" name="s" placeholder="请输入搜索关键字" maxlength="30"/>
       </div>
       <div class="mdui-col-xs-4 mdui-col-sm-2">
-        <button class="mdui-shadow-1 blur mdui-btn btnyuan mdui-center" type="submit" class="submit"> 查找 </button>
+            <span class="akarom-alter-button-valign">
+              <span class="akarom-alter-button blur yuan mdui-center" id="submitSearch">
+                <i class="mdui-icon material-icons">bubble_chart</i><b>搜索</b>
+              </span>
+            </span>
       </div>
+
+      <script>
+        document.getElementById("submitSearch").addEventListener("click", function() {
+          document.getElementById("searchform").submit();
+        });
+      </script>
+
     </div>
     <h3 class="mdui-valign"><i class="mdui-icon material-icons">label_outline</i>&nbsp;标签云</h3>
       <?php $this->widget('Widget_Metas_Tag_Cloud', 'sort=rand()&ignoreZeroCount=1&desc=0&limit=15')->to($tags); ?>

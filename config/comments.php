@@ -9,7 +9,7 @@
 
  * [Romanticism]
  * comments.php 评论区配置文件
- * @version 2.0
+ * @version 2.1
  * 参考自 Typecho 自带的默认主题
 **/
 ?>
@@ -24,7 +24,7 @@
     $commentClass = '';
     if ($comments->authorId) {
         if ($comments->authorId == $comments->ownerId) {
-            $commentClass = '<b><span class="btnyuan adminsign"> 博主 </span></b>';  //如果是文章作者的评论添加样式
+            $commentClass = '<b><span class="btnyuan adminsign"> 作者 </span></b>';  //如果是文章作者的评论添加样式
         }else{
         }
     } 
@@ -41,24 +41,38 @@ if ($comments->levels > 0) {
 }
 $comments->alt(' comment-odd', ' comment-even');
 ?>">
-<div id="<?php $comments->theId(); ?>">
+<div id="<?php $comments->theId(); ?>" style="margin-bottom:10px;">
     <div class="comment-author ">
         <span itemprop="image">
             <?php //Gravatar 头像源
                 $mail=$comments->mail;
                 $mail=md5($mail);
                 $headicon='https://cravatar.cn/avatar/'.$mail.'.png';
-                echo '<img class="headicon" src="'.$headicon.'" height="46px" style="border-radius:50%;float:left;margin-top:0px;margin-right:10px;margin-bottom:-2px">'; 
+                echo '<img class="headicon" src="'.$headicon.'" height="46px" width="46px" style="border-radius:50%;float:left;margin-top:0px;margin-right:10px;margin-bottom:-2px" loading="lazy">'; 
             ?>
         </span>
-    <p><b><?php $comments->author(); ?></b><small class="mdui-typo-caption-opacity"><?php echo $commentClass; ?><?php getOs($comments->agent); ?>   <?php getBrowser($comments->agent); ?></small></p>
+    <p><b style="position: relative; top: 1px;"><?php $comments->author(); ?></b><small class="mdui-typo-caption-opacity"><?php echo $commentClass; ?><?php getOs($comments->agent); ?>   <?php getBrowser($comments->agent); ?></small></p>
     </div>
        
-    <div class="mdui-typo-caption-opacity"><?php $comments->date('y-m-d H:i'); ?><b><?php $comments->reply(' （回复）'); ?></b></div>
-        <?php //引入带表情的评论数据
-        $cos = preg_replace('#\@OwO\((.*?)\)#','<img style="width:26px;height:auto;" src="'.$GLOBALS['theme_url'].'/config/style/img/bili/$1.webp">',$comments->content);
-        echo $cos;
+    <div class="mdui-typo-caption-opacity"><?php $comments->date('y-m-d H:i'); ?> · <b><?php $comments->reply('回复'); ?></b></div>
+        <?php 
+        // 解析带表情的评论内容
+        $parsedComment = preg_replace_callback(
+            '#\@OwO(b)?\((.*?)\)#',
+            function ($matches) {
+                $width = $matches[1] ? '50' : '30'; // "b"ig表情
+                $emoticon = $matches[2];
+                $themeUrl = htmlspecialchars($GLOBALS['theme_url'], ENT_QUOTES, 'UTF-8');
+
+                return '<img style="width:' . $width . 'px; height:auto; margin-bottom:-7px;" ' .
+                       'src="' . $themeUrl . '/config/style/img/bili/' . $emoticon . '.webp" ' .
+                       'loading="lazy" alt="' . $emoticon . '">';
+            },
+            $comments->content
+        );
+        echo '<div style="padding-top:5px;">' . $parsedComment . '</div>';
         ?>
+
 </div>
 <div class="content">
     <hr>
@@ -84,10 +98,10 @@ $comments->alt(' comment-odd', ' comment-even');
         <?php $comments->cancelReply(); ?>
     </div>
     
-    	<h3 id="response"><?php _e('添加新评论'); ?></h3>
-    	<form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" role="form">
+        <h3 id="response"><?php _e('添加新评论'); ?></h3>
+        <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" role="form">
             <?php if($this->user->hasLogin()): ?>
-                当前登录身份：<?php $this->author->screenName(); ?><br>
+                当前登录身份：<?php $this->author->screenName(); ?><br><br>
                 <div class="OwO-logo" onclick="OwO_show()"><!--登录状态下-->
                 <kbd>OωO表情</kbd>
                 </div>
@@ -141,9 +155,39 @@ $comments->alt(' comment-odd', ' comment-even');
              </div>
          
             <?php endif; ?>
-    		<button class="mdui-shadow-1 blur mdui-btn btnyuan mdui-center" type="submit" class="submit"> &nbsp;&nbsp;发表评论&nbsp;&nbsp; </button>
+            <span class="akarom-alter-button-valign">
+                <span class="akarom-alter-button akarom-alter-button-disabled blur yuan mdui-center" id="submitComment">
+                    <i class="mdui-icon material-icons">keyboard</i><b>发表评论</b>
+                </span>
+            </span>
+            <script>
+            function checkInputs() {
+              const textarea = document.getElementById("textarea");
+              const sum = document.getElementById("sum");
+              const button = document.getElementById("submitComment");
+
+              if (!textarea || !sum || !button) {
+                return;
+              }
+
+              if (textarea.value.trim() !== "" && sum.value.trim() !== "") {
+                button.classList.remove("akarom-alter-button-disabled");
+              } else {
+                button.classList.add("akarom-alter-button-disabled");
+              }
+            }
+
+            document.getElementById("textarea").addEventListener("input", checkInputs);
+            document.getElementById("sum").addEventListener("input", checkInputs);
+
+            document.getElementById("submitComment").addEventListener("click", function() {
+              if (!document.getElementById("submitComment").classList.contains("akarom-alter-button-disabled")) {
+                document.getElementById("comment-form").submit();
+              }
+            });
+            </script>
             <br><br>
-    	</form>
+        </form>
     </div>
     <?php else: ?>
     <h3 class="mdui-valign">
@@ -152,7 +196,7 @@ $comments->alt(' comment-odd', ' comment-even');
     <?php endif; ?>
      <hr>
     <?php if ($comments->have()): ?>
-	<h3><?php $this->commentsNum( _t('仅有一条评论'), _t('已有 %d 条评论')); ?></h3>
+    <h3><?php $this->commentsNum( _t('仅有一条评论'), _t('已有 %d 条评论')); ?></h3>
     <?php $comments->listComments(); ?>
     <span calss="outlineborder">
     <?php $comments->pageNav('< 前一页', '后一页 >'); ?>
