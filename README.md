@@ -94,7 +94,9 @@ Demo: [明石博客](https://imakashi.eu.org/blog/)
 ## 鼓励
 喜欢此主题的话请**Star本项目**哦！这是对我最大的认可！
 
-## 版权
+## 版权与声明
+**禁止将本主题用于非法网站搭建。由此产生一切后果皆由使用者承担。**
+**It is prohibited to use this theme for building illegal websites. Any consequences arising from such use shall be borne solely by the user.**
 
 Romanticism Version 2.1
 
