@@ -45,6 +45,8 @@ Demo: [明石博客](https://imakashi.eu.org/blog/)
 
 [MDUI 框架](https://www.mdui.org/) | [jQuery 库](https://github.com/jquery/jquery)
 
+[Cravatar 头像服务](https://cravatar.cn/)
+
 [OwO.js](https://github.com/DIYgod/OwO) | [谷歌思源宋体](https://fonts.google.com)
 
 [Prismjs](https://prismjs.com/) | [Fancybox](https://fancyapps.com/docs/ui/fancybox/)
