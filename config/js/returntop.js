@@ -6,7 +6,7 @@ var scrolltotop={
 
     setting: {startline:100, scrollto: 0, scrollduration:1000, fadeduration:[500, 100]},
 
-    controlHTML: '<button class="mdui-shadow-1 blur mdui-shadow-0 mdui-fab-fixed mdui-fab mdui-fab-mini"><i class="mdui-icon material-icons">keyboard_arrow_up</i></button>', 
+    controlHTML: '<button style="border: 1px solid rgba(128, 128, 128, 0.2);" class="mdui-shadow-0 blur mdui-shadow-0 mdui-fab-fixed mdui-fab mdui-fab-mini"><i style="margin-left: 7px;" class="mdui-icon material-icons">keyboard_arrow_up</i></button>', 
 
     controlattrs: {offsetx:30, offsety:30}, //offset of control relative to right/ bottom of window corner
 
