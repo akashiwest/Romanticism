@@ -9,7 +9,7 @@
 
  * [Romanticism]
  * sidebar.php 边栏菜单文件
- * @version 2.1
+ * @version 2.2
 **/
 ?>
 
@@ -21,9 +21,7 @@
 <div class="mdui-grid-tile sidebarimg" style="background-image: url('<?php if(empty($this->options->AKAROMsidebarimg)): ?><?php $this->options->themeUrl('config/style/img/default/sidebar.webp'); ?><?php else: ?><?php $this->options->AKAROMsidebarimg(); ?><?php endif; ?>');">
   <img class="headicon" onclick="window.location.href='<?php $this->options ->siteUrl('/admin'); ?>'" title="headicon" src="<?php if(empty($this->options->AKAROMlogoUrl)): ?><?php $this->options->themeUrl('config/style/img/default/user.jpg'); ?><?php else: ?><?php $this->options->AKAROMlogoUrl(); ?><?php endif; ?>">
   <div class="mdui-grid-tile-actions">
-    <h3 class="easysee chameleon">
-    <?php $this->options->title(); ?>
-</h3>
+    <h3 class="easysee chameleon" style="white-space:pre-wrap;"><?php $this->options->title(); ?></h3>
 <br>
 <br>
   </div>
@@ -48,12 +46,18 @@
             <?php $this->widget('Widget_Metas_Category_List')->to($category); ?>
             <?php while ($category->next()): ?>
                 <a href="<?php $category->permalink(); ?>" class="btnyuan mdui-list-item">
-                  <div class="mdui-list-item-content"><?php $category->name(); ?></div>
-                   <b><?php $category->count(); ?></b>
+                    <div class="mdui-list-item-content" style="white-space: normal;padding-right:10px;">
+                        <?php if ($category->parent != 0): ?>└<?php endif; ?><?php $category->name(); ?>
+                    </div>
+                    <b>
+                        
+                        <?php $category->count(); ?>
+                    </b>
                 </a>
             <?php endwhile; ?>
-          <div class="mdui-typo"><hr></div>
-         </div>	
+            <div class="mdui-typo"><hr></div>
+          </div>
+
         
         <div class="mdui-list">
 
@@ -77,3 +81,6 @@
   
 </div>
 </div><!--Sidebar End-->
+
+
+

@@ -9,12 +9,13 @@
 
  * [Romanticism]
  * footer.php 页脚文件
- * @version 2.1 - 250202
+ * @version 2.2 - 250710
 **/
 ?>
 
 <div class="mdui-shadow-0 mdui-text-center mdui-card toup">
 <br>
+
       <br>
       <span class="title">
         &copy;<?php echo date("Y"); ?> <?php $this->options->title(); ?>
@@ -28,7 +29,7 @@
         <?php endif;?>
          <br>
          <!-- 已经弄得很不显眼了，请不要删除以下信息 -->
-      <small style="opacity: .5;">Theme <b><a class="chameleon underline" onclick="window.location.href='https://imakashi.eu.org/blog/archives/themeRomanticism.html'">Romanticism2.1</a></b> by <a class="chameleon underline" onclick="window.location.href='https://imakashi.eu.org/'"><b>Akashi</b></a>
+      <small style="opacity: .2;">Theme <b><a class="chameleon underline" onclick="window.location.href='https://imakashi.eu.org/blog/archives/themeRomanticism.html'">Romanticism2.2</a></b> by <a class="chameleon underline" onclick="window.location.href='https://imakashi.eu.org/'"><b>Akashi</b></a>
       <br>
       Powered by <a class="chameleon underline" onclick="window.location.href='https://typecho.org'"><b>Typecho</b></a></small>
       <br><br>
@@ -48,10 +49,10 @@
     <script src="<?php $this->options->themeUrl('config/mdui/js/mdui.min.js'); ?>"></script>
     <script src="<?php $this->options->themeUrl('config/js/jquery.min.js'); ?>"></script>
     
-    <script src="<?php $this->options->themeUrl('config/js/listLazyload.js?v=2.1'); ?>"></script>
-    <script src="<?php $this->options->themeUrl('config/js/tagIcon.js?v=2.1'); ?>"></script>
-    <script src="<?php $this->options->themeUrl('config/js/customStyle.js?v=2.1'); ?>"></script>
-    <script src="<?php $this->options->themeUrl('config/js/returntop.js?v=2.1'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('config/js/listLazyload.js?v=2.2'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('config/js/tagIcon.js?v=2.2'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('config/js/customStyle.js?v=2.2'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('config/js/returntop.js?v=2.2'); ?>"></script>
     <script src="<?php $this->options->themeUrl('config/js/prism.highlight.js'); ?>"></script>
 
     <script src="<?php $this->options->themeUrl('config/js/jquery.fancybox.min.js'); ?>"></script>
@@ -62,7 +63,7 @@
     </script>
 
     <?php if (!empty($this->options->AKAROMfucset) && in_array('AKAROMindexloading', $this->options->AKAROMfucset)): ?>
-    <script type="text/javascript" src="<?php $this->options->themeUrl('config/js/loading.js?v=2.1'); ?>"></script>
+    <script type="text/javascript" src="<?php $this->options->themeUrl('config/js/loading.js?v=2.2'); ?>"></script>
     <?php endif; ?>
     
     <script src="<?php $this->options->themeUrl('config/js/OwO.js'); ?>"></script>
@@ -75,6 +76,9 @@
         }
     }
     </script>
+
+    <script src="<?php $this->options->themeUrl('config/js/md5.min.js'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('config/js/preheadicon.js?v=2.2'); ?>"></script>
 
     <!-- 自定义JS -->
     <?php if(!empty($this->options->AKAROMcustomJs)): ?>

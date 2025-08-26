@@ -9,7 +9,7 @@
 
  * [Romanticism]
  * header.php 页首文件
- * @version 2.1
+ * @version 2.2
  * @link https://imakashi.eu.org/
 **/
 ?>
@@ -29,7 +29,7 @@ error_reporting(0);
 
     <meta name="copyright" content="Copyright(C)<?php echo date('Y');?> <?php $this->options->title() ?>"/>
     <meta name="author" content="<?php $this->author(); ?>"/>
-    <meta name="TypechoTemplateInfo" content="Creator: Akashi Nishikata; Link: imakashi.eu.org; Release: 2025-02">
+    <meta name="TypechoTemplateInfo" content="Creator: Akashi Nishikata; Link: imakashi.eu.org; Release: 2025-08">
 
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
@@ -47,7 +47,7 @@ error_reporting(0);
 
     <!-- 使用url函数转换相关路径 -->
     <link rel="stylesheet" href="<?php $this->options->themeUrl('config/mdui/css/mdui.min.css'); ?>">
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('config/style/romanticism.aka.css?v=2.1'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('config/style/romanticism.aka.css?v=2.2'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('config/style/prism.highlight.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('config/style/jquery.fancybox.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('config/style/icon.aka.css'); ?>">
@@ -62,7 +62,7 @@ error_reporting(0);
 
 </head>
 <!--[if IE 9]>
-    <div class="browsehappy" role="dialog">当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="https://browsehappy.com/">升级你的浏览器</a></div>
+    <div style="z-index:99999;position:fixed;background-color:white;height:100vh;width:100vw;padding-top:40vh;padding-left:15vw;padding-right:15vw;font-size:23px;word-wrap:break-word;">当前网页 <strong>不支持</strong> 你的浏览器<br><br>请 <a href="https://browsehappy.com/" style="color:rgb(233,100,100);">升级浏览器</a></div>
 <![endif]-->
 
 <body class="mdui-theme-layout-light mdui-theme-primary-blue mdui-theme-accent-red">
@@ -84,7 +84,7 @@ error_reporting(0);
       <a class="mdui-hidden-xs-down"></a>
     </div>
   </div>
-  <div class="mdui-dialog yuan blur" id="search">
+  <div class="mdui-dialog yuan blur mdui-shadow-0" id="search">
   <div class="mdui-container">
     <div class="mdui-typo">
     <h3 class="mdui-valign"><i class="mdui-icon material-icons">search</i>&nbsp;搜索一下</h3>

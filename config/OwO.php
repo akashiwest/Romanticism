@@ -9,7 +9,7 @@
 
  * [Romanticism]
  * OwO.php 评论区表情文件
- * @version 2.1
+ * @version 2.0
 **/
 ?>
 
