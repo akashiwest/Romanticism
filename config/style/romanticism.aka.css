@@ -8,16 +8,18 @@
 
  * [Romanticism]
  * romanticism.aka.css 主样式表文件
- * @version 2.1
+ * @version 2.2
  * @link https://imakashi.eu.org/
 **/
+
+html{
+    scroll-behavior: auto;
+    scroll-padding-top: 100px;
+}
 body{
     font-family: 'Noto Serif SC', serif;
     font-weight:400;
     font-display: swap;
-}
-html::-webkit-scrollbar {
-    display: none;
 }
 
 .mdui-theme-layout-light .LDtrans{
@@ -36,14 +38,18 @@ html::-webkit-scrollbar {
 
 /*高斯模糊效果*/
 .blur{
-    backdrop-filter: saturate(180%) blur(15px);
-    -webkit-backdrop-filter: saturate(180%) blur(15px);
+    backdrop-filter: saturate(150%) blur(5px);
+    -webkit-backdrop-filter: saturate(150%) blur(5px);
+}
+.loadingbg.blur{
+    backdrop-filter: saturate(160%) blur(15px);
+    -webkit-backdrop-filter: saturate(160%) blur(15px);
 }
 .mdui-theme-layout-light .blur{
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.52);
 }
 .mdui-theme-layout-dark .blur{
-    background: rgba(58, 58, 58, 0.72);
+    background: rgba(58, 58, 58, 0.52);
 }
 .mdui-overlay{
     backdrop-filter: saturate(100%) blur(20px);
@@ -52,7 +58,7 @@ html::-webkit-scrollbar {
 .mdui-tooltip, .mdui-snackbar{
     backdrop-filter: saturate(180%) blur(15px);
     -webkit-backdrop-filter: saturate(180%) blur(15px);
-    box-shadow: 0 0 2px black; 
+    border: 1px solid rgba(128, 128, 128, 0.2);
 }
 .mdui-theme-layout-light .mdui-tooltip{
     background: rgba(255, 255, 255, 0.72);
@@ -71,6 +77,10 @@ html::-webkit-scrollbar {
     background: rgba(69, 69, 69, 0.72);
     color:#f0f0f0;
     font-weight: bold;
+}
+
+.mdui-dialog{
+    border: 1px solid rgba(128, 128, 128, 0.2);
 }
 
 /*加载动画*/
@@ -107,6 +117,60 @@ html::-webkit-scrollbar {
     height: 50px;
 }
 
+/*
+Fonts in loading
+Author:Naoya | @nxworld
+Link:
+https://codepen.io/nxworld/pen/zwGpXr
+*/
+
+.loadingtx span {
+  display: inline-block;
+  margin: 0 -0.09em;
+  font-weight: bold;
+}
+.loading-text span {
+  animation: loading02 1s infinite alternate;
+}
+
+.loading-text span:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.loading-text span:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.loading-text span:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.loading-text span:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+.loading-text span:nth-child(5) {
+  animation-delay: 1s;
+}
+
+.loading-text span:nth-child(6) {
+  animation-delay: 1.2s;
+}
+
+@keyframes loading02 {
+  0% {
+    filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    filter: blur(2px);
+    opacity: .3;
+  }
+}
+
+
+
+
 /*圆角设置*/
 .yuan, .mdui-snackbar{
     border-radius: 14px;
@@ -117,12 +181,15 @@ html::-webkit-scrollbar {
 .mdui-tooltip{
     border-radius: 8px;
 }
-@media(max-width:420px){
-    .yuan, .mdui-snackbar{
+@media(max-width:450px){
+    .yuan{
         border-radius: 10px;
     }
     .btnyuan{
         border-radius: 6px;
+    }
+    .mdui-snackbar{
+        border-radius: 0px;
     }
     .mdui-tooltip{
     border-radius: 8px;
@@ -178,13 +245,19 @@ html::-webkit-scrollbar {
     background: rgba(128, 128, 128, 0.3);
     border-radius: 5px;
 }
-.sticky-item {
+.sticky-item{
     display: inline-block;
     width: 320px;
     height: 100%;
     margin-right: 8px;
     background-color: #f0f0f0;
     text-align: center;
+    transition: all 0.5s ease;
+    border: 0.01px solid rgba(128,128,128,.3);
+}
+.sticky-item:hover{
+    transform: scale(1.02);
+    border-radius:12px;
 }
 .sticky-item .mdui-card-media-covered{
     display: flex;
@@ -235,7 +308,7 @@ html::-webkit-scrollbar {
     align-items: center;
     justify-content: center;
     z-index: 99;
-    
+    border: 1px solid rgba(128, 128, 128, 0.2);
 }
 .sticky-badge i{
     transform: rotate(-30deg);
@@ -283,6 +356,7 @@ html::-webkit-scrollbar {
     padding-top: 15px;
     padding-bottom: 15px;
     line-height: 20px;
+    border: 1px solid rgba(128, 128, 128, 0.8);
 }
 
 
@@ -298,6 +372,12 @@ html::-webkit-scrollbar {
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
+    transition: all 0.5s ease;
+    border: 0.01px solid rgba(128,128,128,.3);
+}
+.articlelistimg:hover{
+    transform: scale(1.03);
+    border-radius:24px;
 }
 .articlelistcard .mdui-card-primary-title{
     display: -webkit-box;
@@ -311,10 +391,20 @@ html::-webkit-scrollbar {
 .articlelistcard .mdui-card-primary-title h4{
     line-height: 30px;
 }
+
+.articlesms{
+    transition: all 0.5s ease;
+    border: 0.1px solid rgba(128,128,128,.2);
+}
+.articlesms:hover{
+    transform: scale(1.01);
+    border: 0.1px solid rgba(128,128,128,.8);
+    z-index:9;
+}
 .articlesms .mdui-card-content{
     margin-top: -20px;
 }
-.mdui-theme-layout-dark .articlesms img{
+.mdui-theme-layout-dark .articlesms .akarom-imgbox{
     filter: brightness(80%);
 }
 
@@ -375,18 +465,17 @@ a:hover{
     border: none;
 }
 .akarom-alter-button{
-    border: 2px solid rgba(158, 158, 158, 0.3);
+    border: 2px solid rgba(128, 128, 128, 0.2);
     padding:6px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.5s ease;
     background: none;
     padding-left: 10px;
     padding-right: 12px;
 }
 .akarom-alter-button:hover{
-    filter: blur(2px);
-    transform: scale(1.01);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
     position: relative;
+    border-radius: 16px;
 }
 .akarom-alter-button-disabled{
     opacity: .5;
@@ -518,9 +607,8 @@ p{
     background-color: CornflowerBlue;
     opacity: 0.5;
     transform: skew(-35deg);
-    transition: opacity .2s ease-in-out;
+    transition: all .2s ease;
     border-radius: 3px 8px 10px 6px;
-    transition: 0.1s ease background-color;
 }
 .mdui-typo h3{
      font-weight:900;
@@ -544,9 +632,8 @@ p{
     background-color: lightblue;
     opacity: 0.5;
     transform: skew(-35deg);
-    transition: opacity .2s ease-in-out;
+    transition: all .2s ease;
     border-radius: 3px 8px 10px 6px;
-    transition: 0.1s ease background-color;
 }
 .mdui-typo h3{
     font-weight:900;
@@ -587,7 +674,7 @@ p{
     padding-right:3px;
     margin-left: 8px;
     font-size: 13px;
-    border: 3px solid rgba(136, 132, 132, 0.3);
+    border: 2px solid rgba(128, 128, 128, 0.3);
 }
 #comments .comment-parent{
     margin-top: 30px;
@@ -601,9 +688,15 @@ p{
     padding:10px;
     border-radius:10px;
     display:inline-block;
-    border: 2px solid rgba(136, 132, 132, 0.199);
+    border: 3px solid rgba(128,128,128,.3);
     line-height: 25px;
     margin-bottom: 5px;
+}
+.outlineborder a{
+    color: #252525 !important;
+}
+.mdui-theme-layout-dark .outlineborder a{
+    color: #f0f0f0 !important;
 }
 
 .link img{
@@ -631,6 +724,7 @@ p{
     display: flex;
     align-items: center;
     cursor: pointer;
+    border: 1px solid rgba(128, 128, 128, 0.2);
 }
 .akarom-articletag:hover{
     width:205px;
@@ -672,9 +766,6 @@ p{
         bottom: 15px; 
         left: 15px; 
     }
-}
-.tagnotice{
-    text-shadow: 0 0 3px #fff;
 }
 .taglist,
 .tagnotice{
@@ -726,6 +817,116 @@ body:has(#filtersms:checked) .LDtrans .tagnotice-sms{
     margin: 0 auto;
     display: block;
 }
+.akarom-panel-menu{
+    padding:16px;
+    overflow: hidden;
+    padding-left:24px;
+    border: 1px solid rgba(128, 128, 128, 0.1);
+}
+.akarom-panel-menu h3{
+    padding:0;
+    margin-top:0;
+}
+.akarom-panel-menu ul{
+    margin-bottom: 0;
+}
+.akarom-panel-copy{
+    padding:16px;
+    overflow: hidden;
+    border: 1px solid rgba(128, 128, 128, 0.1);
+}
+.akarom-corner-symbol-lb {
+  position: absolute;
+  bottom: -60px; 
+  left: -20px;  
+  font-weight: 600;
+  font-size: 130px;
+  transform: rotate(-15deg);
+  opacity:.1;
+}
+.akarom-corner-symbol-rb {
+  position: absolute;
+  bottom: -60px;
+  right: -10px;
+  font-weight: 600;
+  font-size: 130px;
+  transform: rotate(-15deg);
+  opacity:.1;
+}
+
+.mdui-theme-layout-light .akarom-inverticon{
+    filter: invert(0);
+}
+
+.mdui-theme-layout-dark .akarom-inverticon {
+    filter: invert(1) !important;
+}
+
+.akarom-imgbox{
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    border: 0.01px solid rgba(128,128,128,.3);
+}
+.akarom-imgbox:hover{
+    transform: scale(1.01);
+    z-index:9;
+}
+
+.articlesms .akarom-imgbox:hover{
+    transform: scale(1);
+    z-index:9;
+}
+
+.akarom-imgbox img {
+    width: 100%;
+    height: auto;
+    min-height: 100px;
+    object-fit: cover;
+    display: block;
+    opacity: 0.2;
+    transition: all .8s ease;
+    filter: blur(10px);
+}
+
+.akarom-imgbox img.loaded {
+    filter: blur(0px);
+    opacity: 1;
+    z-index: 2;
+}
+.akarom-imgbox .center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.akarom-links{
+    transition: all 0.5s ease;
+    border: 0.01px solid rgba(128,128,128,.5);
+}
+.akarom-links:hover{
+    transform: scale(1.05);
+    border-radius:16px;
+    z-index:9;
+}
+
+.fancybox-bg{
+    background: black !important;
+    transition: all 0.3s ease;
+}
+.fancybox-image{
+    border: 1px solid rgba(128,128,128,.6) !important;
+}
+
+
+.code-toolbar{
+    margin-bottom: 32px;
+}
+
+.code-toolbar .toolbar{
+    margin-right: 8px;
+}
 
 /*aplayer适配深色模式*/
 .mdui-theme-layout-light .aplayer{
@@ -744,11 +945,11 @@ body:has(#filtersms:checked) .LDtrans .tagnotice-sms{
 .mdui-theme-layout-dark .aplayer-lrc::after{
      background: linear-gradient(rgba(235, 229, 229, 0) 0px, rgba(59, 59, 59, 0.8));
 }
-/*aplayer适配深色模式*/
+/*aplayer适配深色模式 END*/
 
 /*musenxi livephoto*/
 .lpk-live-photo-player{
     border-radius:8px;
     overflow: hidden;
 }
-/*musenxi livephoto*/
+/*musenxi livephoto END*/
