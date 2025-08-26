@@ -9,7 +9,7 @@
 
  * [Romanticism]
  * functions.php 主题基本配置文件
- * @version 2.1
+ * @version 2.2
  * @link https://imakashi.eu.org/
 **/
 
@@ -31,7 +31,7 @@ function themeConfig($form) {  //后台设置界面
         }
     </style>
     <h1><img src="<?php echo Helper::options()->themeUrl.'/config/style/img/icon.png'; ?>">主题设置</h1>
-    <p><button id="checkUpdateBtn" class="btn">检查更新</button> · 当前版本: 2.1 · <a href="https://github.com/akashiwest/Romanticism" target="_blank">Github 文档</a></p>
+    <p><button id="checkUpdateBtn" class="btn">检查更新</button> · 当前版本: 2.2 · <a href="https://github.com/akashiwest/Romanticism" target="_blank">Github 文档</a></p>
     <div id="updateStatus"></div>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -117,10 +117,23 @@ function themeConfig($form) {  //后台设置界面
     $AKAROMfootericp = new Typecho_Widget_Helper_Form_Element_Text('AKAROMfootericp', NULL, NULL, _t('设置页脚备案信息'), _t('此处填入的信息将会显示在页脚备案信息区，请依据博客情况填写。不填则不显示备案信息。可以使用 html 标签'));
     $form->addInput($AKAROMfootericp);
 
-    $AKAROMfucset = new Typecho_Widget_Helper_Form_Element_Checkbox('AKAROMfucset', 
-    array('AKAROMindexloading' => _t('开启此选项将会在站点加载时显示加载动画。')),
-    array('AKAROMindexloading'), _t('首页加载动画'));
+    // 首页加载动画
+    $AKAROMfucset = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'AKAROMfucset', 
+        array('AKAROMindexloading' => _t('开启此选项将会在站点加载时显示加载动画。')),
+        array(), // 默认不勾选，传空数组
+        _t('首页加载动画')
+    );
     $form->addInput($AKAROMfucset->multiMode());
+
+    // 评论区验证码
+    $AKAROMfucsetcaptcha = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'AKAROMfucsetcaptcha', 
+        array('AKAROMsetcaptcha' => _t('不启用')),
+        array(), // 默认不勾选
+        _t('评论区简单验证码')
+    );
+    $form->addInput($AKAROMfucsetcaptcha->multiMode());
 
     $AKAROMcustomCss = new Typecho_Widget_Helper_Form_Element_Textarea('AKAROMcustomCss', NULL, NULL, _t('自定义 CSS 代码'), _t('输入自定义的 CSS 代码，优先级为高'));
     $form->addInput($AKAROMcustomCss);
@@ -172,44 +185,260 @@ function themeInit($comment) {
 
 function Fancybox($content){ //Fancybox图片灯箱功能
     //以下参考自 Skywt 开发的 Daydream 主题（https://github.com/Skywt2003/Daydream），感谢大佬。
-    $content = preg_replace("/<img src=\"([^\"]*)\" alt=\"([^\"]*)\" title=\"([^\"]*)\">/i", "<a data-fancybox=\"gallery\" href=\"\\1\" data-caption=\"\\3\"><img class=\"btnyuan\" src=\"\\1\" alt=\"\\2\" title=\"\\3\" loading=\"lazy\"></a>", $content);
+    $content = preg_replace("/<img src=\"([^\"]*)\" alt=\"([^\"]*)\" title=\"([^\"]*)\">/i", "<div data-fancybox=\"gallery\" href=\"\\1\" data-caption=\"\\3\" class=\"akarom-imgbox btnyuan blur\"><div class=\"center mdui-valign\"><i class=\"mdui-list-item-icon mdui-icon material-icons\">photo</i>&nbsp;加载中</div><img class=\"btnyuan\" src=\"\\1\" alt=\"\\2\" title=\"\\3\" loading=\"lazy\" onload=\"this.classList.add('loaded')\" onerror=\"this.style.height='50px'; this.previousElementSibling.innerHTML='图片加载失败';\"></div>", $content);
     return $content;
 }
 
-function AKAROM_simple_captcha_math() { //评论区简单验证码
-    $num1 = rand(1, 15);
-    $num2 = rand(1, 15);
-    echo "
-    <div class=\"mdui-textfield\">
-                    <i class=\"mdui-icon material-icons\">beach_access</i>
-                    <input class=\"mdui-textfield-input\" type=\"text\" name=\"sum\" id=\"sum\" placeholder=\"$num1 + $num2 = ?\" required/>
-                    <div class=\"mdui-textfield-error\">验证码不能为空</div>
-                  </div>
-    
-    ";
-    echo "<input type=\"hidden\" name=\"num1\" value=\"$num1\">\n";
-    echo "<input type=\"hidden\" name=\"num2\" value=\"$num2\">";
+function AKAROM_simple_captcha_math() { // 评论区简单验证码
+    $user = Typecho_Widget::widget('Widget_User');
+    if ($user->hasLogin()) {
+        // 已登录用户 -> 不显示验证码
+        return;
+    }
+
+    $options = Helper::options();
+    if (!empty($options->AKAROMfucsetcaptcha) && in_array('AKAROMsetcaptcha', $options->AKAROMfucsetcaptcha)){
+        echo "
+        <div class=\"mdui-textfield\" style=\"display:none;\">
+            <i class=\"mdui-icon material-icons\">beach_access</i>
+            <input class=\"mdui-textfield-input\" type=\"text\" name=\"sum\" id=\"sum\" value=\"2\">
+        </div>
+        ";
+        echo "<input type=\"hidden\" name=\"num1\" value=\"1\">\n";
+        echo "<input type=\"hidden\" name=\"num2\" value=\"1\"><br>";
+    } else {
+        $num1 = rand(1, 15);
+        $num2 = rand(1, 15);
+        echo "
+        <div class=\"mdui-textfield\">
+            <i class=\"mdui-icon material-icons\">beach_access</i>
+            <input class=\"mdui-textfield-input\" type=\"text\" name=\"sum\" id=\"sum\" placeholder=\"$num1 + $num2 = ?\" required/>
+            <div class=\"mdui-textfield-error\">验证码不能为空</div>
+        </div>
+        ";
+        echo "<input type=\"hidden\" name=\"num1\" value=\"$num1\">\n";
+        echo "<input type=\"hidden\" name=\"num2\" value=\"$num2\">";
+    }
 }
 
-function AKAROM_simple_captcha($comment, $post, $result) { //验证码判断
+function AKAROM_simple_captcha($comment, $post, $result) { // 验证码判断
+    $user = Typecho_Widget::widget('Widget_User');
+    if ($user->hasLogin()) {
+        // 已登录用户 -> 跳过验证
+        return $comment;
+    }
+
     if (!empty($_REQUEST['text'])) {
         if (empty($_POST['num1']) || empty($_POST['num2'])) {
             throw new Typecho_Widget_Exception(_t('验证码异常，请重试', '评论失败'));
         } else {
             $sum = $_POST['sum'];
             switch ($sum) {
-            case $_POST['num1'] + $_POST['num2'] : break;
-            case null:
-                throw new Typecho_Widget_Exception(_t('请输入验证码，请重试', '评论失败'));
-                break;
-            default:
-                throw new Typecho_Widget_Exception(_t('验证码错误，请重试', '评论失败'));
+                case $_POST['num1'] + $_POST['num2']: break;
+                case null:
+                    throw new Typecho_Widget_Exception(_t('请输入验证码，请重试', '评论失败'));
+                    break;
+                default:
+                    throw new Typecho_Widget_Exception(_t('验证码错误，请重试', '评论失败'));
             }
         }
     }
     return $comment;
+}
+
+
+
+
+//github卡片
+function getGitHubRepoInfo($url) {
+    $parts = parse_url($url);
+    if (!isset($parts['path'])) return false;
+
+    $pathParts = array_values(array_filter(explode('/', $parts['path'])));
+    if (count($pathParts) < 2) return false;
+
+    $owner = $pathParts[0];
+    $repo = preg_replace('/\.git$/', '', $pathParts[1]); // 去除.git后缀
+
+    $cacheKey = md5("{$owner}/{$repo}");
+    $cacheDir = __DIR__ . '/cache/githubapi';
+    
+    if (!file_exists($cacheDir) && !mkdir($cacheDir, 0755, true)) {
+        error_log("无法创建缓存目录: $cacheDir");
     }
 
+    $cacheFile = $cacheDir . '/' . $cacheKey . '.json';
+    $cacheTime = 3600;
+
+    if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
+        $json = file_get_contents($cacheFile);
+        return $json ? json_decode($json, true) : false;
+    }
+
+    $apiUrl = "https://api.github.com/repos/{$owner}/{$repo}";
+    $opts = [
+        'http' => [
+            'method' => 'GET',
+            'header' => "User-Agent: Typecho-Romanticism/2.2\r\n",
+            'timeout' => 10
+        ]
+    ];
+    
+    $json = @file_get_contents($apiUrl, false, stream_context_create($opts));
+    if ($json === false) return false;
+
+    //状态码
+    $statusCode = 0;
+    foreach ($http_response_header as $header) {
+        if (preg_match('#HTTP/\d+(?:\.\d+)?\s+(\d+)#i', $header, $m)) {
+            $statusCode = (int)$m[1];
+            break;
+        }
+    }
+    if ($statusCode !== 200) return false;
+
+    if (!file_put_contents($cacheFile, $json)) {
+        error_log("缓存写入失败: $cacheFile");
+    }
+
+    return json_decode($json, true);
+}
+
+function parseCustomGitHubTag($content) {
+    return preg_replace_callback(
+        '/\[github\s+link="([\w\-\.]+\/[\w\-\.]+)"\]/i', // 允许点号
+        function($matches) {
+            $repoPath = $matches[1];
+            $url = "https://github.com/" . $repoPath;
+            $data = getGitHubRepoInfo($url);
+
+            if (!$data) return '<div class="mdui-typo blur LDtrans yuan akarom-panel-menu">无法获取 GitHub 数据，请检查</div>';
+
+            // 在 parseCustomGitHubTag 的回调函数中修改这部分
+            $safeData = [
+                'name' => htmlspecialchars($data['name']),
+                'desc' => htmlspecialchars($data['description'] ?? ''),
+                'stars' => intval($data['stargazers_count']),
+                'url' => htmlspecialchars($url),
+                'repoPath' => htmlspecialchars($repoPath),
+                // 新增更新时间 ▼
+                'lastUpdated' => isset($data['pushed_at']) 
+                    ? htmlspecialchars(date('y-m-d', strtotime($data['pushed_at'])))
+                    : '未知时间'
+            ];
+            $themeUrl = Helper::options()->themeUrl.'/config/style/img/icon/github-mark.svg';
+            return <<<HTML
+            <div class="mdui-typo blur LDtrans yuan akarom-panel-menu">
+                <div class="akarom-corner-symbol-rb">
+                    <img class="akarom-inverticon" src="{$themeUrl}">
+                </div>
+                <h3>{$safeData['repoPath']}</h3>
+                <p>{$safeData['desc']}</p>
+                <div class="meta">
+                    <span class="github-updated" title="最后更新时间">
+                    更新于 {$safeData['lastUpdated']}
+                    </span>
+                     · 
+                    <span class="github-stars">⭐ {$safeData['stars']}</span>
+                    <a class="mdui-float-right"
+                       href="{$safeData['url']}" 
+                       target="_blank" 
+                       rel="noopener noreferrer"><b>查看该项目</b></a>
+                </div>
+            </div>
+            HTML;
+        },
+        $content
+    );
+}
+
+
+/**
+ * 获取全站文章总字数
+ * 
+ * @return int 文章总字数
+ */
+function getTotalWordCount() {
+    
+    // 缓存不存在或已过期，重新计算
+    $db = Typecho_Db::get();
+    $prefix = $db->getPrefix();
+    $totalWords = 0;
+    
+    // 查询所有已发布的文章
+    $rows = $db->fetchAll($db->select('text')
+                ->from($prefix . 'contents')
+                ->where('type = ?', 'post')
+                ->where('status = ?', 'publish'));
+    
+    foreach ($rows as $row) {
+        // 去除HTML标签和空白字符
+        $text = strip_tags($row['text']);
+        $text = preg_replace('/\s+/', '', $text);
+        $totalWords += mb_strlen($text, 'UTF-8');
+    }
+    
+    return $totalWords;
+}
+
+
+/**
+ * 文章目录生成
+ */
+function generateTOC($content) {
+    // 通过正则表达式匹配文章中的H1和H2标签
+    $pattern = '/<h([1-2])(.*?)>(.*?)<\/h[1-2]>/i';
+    
+    if (preg_match_all($pattern, $content, $matches)) {
+        $toc = '<div class="mdui-typo blur LDtrans yuan akarom-panel-menu">
+                <b>文章目录</b>';
+        
+        $currentLevel = 0;
+        $count = count($matches[0]);
+        
+        for ($i = 0; $i < $count; $i++) {
+            $level = (int)$matches[1][$i];
+            $title = strip_tags($matches[3][$i]);
+            $id = 'toc-' . $i;
+            
+            // 添加ID到原标题，用于点击跳转
+            $content = str_replace($matches[0][$i], '<h' . $level . $matches[2][$i] . ' id="' . $id . '">' . $matches[3][$i] . '</h' . $level . '>', $content);
+            
+            // 处理目录层级
+            if ($level > $currentLevel) {
+                $toc .= '<ul class="toc-sublist">';
+            } else if ($level < $currentLevel) {
+                $toc .= '</ul>';
+            }
+            
+            $currentLevel = $level;
+            
+            // 添加目录项
+            $toc .= '<li class="toc-item toc-level-' . $level . '">
+                        <a href="#' . $id . '">#' . $title . '</a>
+                     </li>';
+        }
+        
+        // 关闭所有未关闭的UL标签
+        while ($currentLevel > 0) {
+            $toc .= '</ul>';
+            $currentLevel--;
+        }
+        
+        $toc .= '<div class="akarom-corner-symbol-rb" style="font-size:110px;">#</div></div><br>';
+        
+        // 返回目录和更新后的内容
+        return array(
+            'toc' => $toc,
+            'content' => $content
+        );
+    }
+    
+    return array(
+        'toc' => '',
+        'content' => $content
+    );
+}
 
 
 function get_post_view($archive) {

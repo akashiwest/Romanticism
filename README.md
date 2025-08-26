@@ -1,8 +1,8 @@
-![主题图](https://mono.imakashi.eu.org/opensource/github-Romanticism2.1Screenshot.webp.webp)
+![主题图](https://mono.imakashi.eu.org/opensource/github-Romanticism2theme.webp)
 # Romanticism(浪漫主义)
 一款简洁的 typecho 主题
 
-当前版本：V2.1
+当前版本：V2.2
 
 **“在明石的简洁设计中捕捉来自日常生活中的浪漫主义。”**
 
@@ -12,23 +12,22 @@ Demo: [明石博客](https://imakashi.eu.org/blog/)
 
 ## 特性
 
-- 高度统一的明石设计风格，简洁明快、赏心悦目；
-
-- 全局思源宋体，适合文字阅读；
-
-- 无插件文章置顶样式；
-
-- 代码高亮，为你的代码锦上添花；
-  
-- 原生自带图片灯箱，快让朋友们来欣赏你发的照片吧；
-
-- 评论原生数字验证码，拒绝麦片哥评论；
-
-- 评论原生可发送表情，为对话赋予灵魂；
- 
-- 手动深色模式，夜间阅读保护视力；
-
-- 还有文章归档页、“短讯” 、Gravatar 头像、自带无插件友链页面、评论UA等等功能。
+> - 高度统一的明石设计风格，简洁明快、赏心悦目；
+> 
+> - 全局思源宋体，适合文字阅读；
+> 
+> - 完全响应式，什么设备访问都合适；
+> 
+> - 代码高亮，为你的代码锦上添花；
+> - 原生自带图片灯箱，快让朋友们来欣赏你发的照片吧；
+> 
+> - 评论原生数字验证码，拒绝麦片哥评论；
+> 
+> - 评论原生可发送表情，为对话赋予“灵魂”；
+> 
+> -  手动深色模式，夜间阅读保护视力；
+> 
+> -  还有文章归档页、“短讯” 、Gravatar 头像、自带无插件友链页面、评论UA等等功能。
 
 ## 使用方法
 
@@ -44,8 +43,6 @@ Demo: [明石博客](https://imakashi.eu.org/blog/)
 此主题的诞生离不开以下项目的帮助，特此感谢。
 
 [MDUI 框架](https://www.mdui.org/) | [jQuery 库](https://github.com/jquery/jquery)
-
-[Cravatar 头像服务](https://cravatar.cn/)
 
 [OwO.js](https://github.com/DIYgod/OwO) | [谷歌思源宋体](https://fonts.google.com)
 
@@ -87,21 +84,21 @@ Demo: [明石博客](https://imakashi.eu.org/blog/)
  
  3. 代码高亮格式：使用 ` ``` ` 包裹一段代码，并指定一种语言；
  4. 快速登录：点击侧边栏上你的头像以进入博客后台管理页面。
+ 5. 文章内Github卡片：`[github link=""]` 在引号内输入 作者/项目名，例如“akashiwest/Romanticism”
  
 ## 其他问题
 
- - “首页加载动画”功能由于是所有数据加载完成后才会消失，在某些复杂环境中如果你觉得加载时间太长，请尝试关闭此功能；
  - 受限于本人的技术，即使我已经进行检查与测试，也仍然会有存在 bug 的可能。如你发现了此主题存在的 bug 请给我留言，谢谢！ 
+ - 暂时不支持使用 sqlite 数据库的 typecho 站点使用。
 
 ## 鼓励
 喜欢此主题的话请**Star本项目**哦！这是对我最大的认可！
 
 ## 版权与声明
+
 **禁止将本主题用于非法网站搭建。由此产生一切后果皆由使用者承担。**
 **It is prohibited to use this theme for building illegal websites. Any consequences arising from such use shall be borne solely by the user.**
 
-Romanticism Version 2.1
+Romanticism Version 2.2
 
-![GitHub](https://mono.imakashi.eu.org/opensource/GPL3.svg)
-
-Copyright©2021-2025 [Akashi](https://imakashi.eu.org), under GPL-3.0 License
+Copyright©2022-2025 [Akashi](https://imakashi.eu.org), under GPL-3.0 License

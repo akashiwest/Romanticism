@@ -11,42 +11,60 @@
  * 
  * @package Romanticism
  * @author 明石
- * @version 2.1
+ * @version 2.2
  * @link https://imakashi.eu.org/
- * @date 2025-02-02
+ * @date 2025-08-20
  **/
 
  $this->need('config/header.php');
  ?>
 
 <?php /*加载动画*/ if (!empty($this->options->AKAROMfucset) && in_array('AKAROMindexloading', $this->options->AKAROMfucset)): ?>
-<div class="blur" id="loading">
+<div class="loadingbg blur" id="loading">
   <div id="loading_bg">
-		<div class="loader">
+    <div class="loader">
       <div class="loader-box">
         <noscript>
-        <b>无法加载网页：</b>需要 Javascript
+          <b>无法加载网页：</b>需要 Javascript
         </noscript>
-        <div class="mdui-text-color-blue-200 mdui-spinner"></div>
+        <div style="margin-top:0px;">
+          <div class="loadingtx loading-text">
+            <span>内</span>
+            <span>容</span>
+            <span>正</span>
+            <span>在</span>
+            <span>载</span>
+            <span>入</span>
+          </div>
+        </div>
+        <br>
+        <span class="akarom-alter-button-valign">
+          <span class="akarom-alter-button blur yuan mdui-center" style="margin-top:15px;opacity:0;filter:blur(10px);transition:all .3s ease;font-size:15px;" id="cancelLoadingBtn">
+            在后台加载
+          </span>
+        </span>
       </div>
     </div>
   </div>
 </div>
 <?php endif; ?>
 
+
 <!--首页主题图-->
-<div class="mdui-shadow-0  indeximgcard mdui-card indeximg" style="background-image: url('<?php if(empty($this->options->AKAROMindeximg)): ?><?php $this->options->themeUrl('config/style/img/default/indeximg.webp'); ?><?php else: ?><?php $this->options->AKAROMindeximg(); ?><?php endif; ?>');">
+<div class="mdui-shadow-0 indeximgcard mdui-card indeximg" id="indeximg" style="background-image: url('<?php if(empty($this->options->AKAROMindeximg)): ?><?php $this->options->themeUrl('config/style/img/default/indeximg.webp'); ?><?php else: ?><?php $this->options->AKAROMindeximg(); ?><?php endif; ?>');">
 <div class="mdui-card-media-covered indeximgcard mdui-valign ">
       <div class="mdui-center mdui-card-primary easysee">
       <h1 class="mdui-typo-display-1 titlegap">
         <?php if (!empty($this->archiveTitle)): ?>
           <?php $this->archiveTitle(array(
-              'category'  =>  _t('分类 “<span>%s</span>” 下的文章'),
-              'search'    =>  _t('包含关键字 “<span>%s</span>” 的文章'),
-              'tag'       =>  _t('含有 “<span>%s</span>” 标签的文章')
+              'category'  =>  _t('分类 [<span>%s</span>] 下的文章'),
+              'search'    =>  _t('包含关键字 [<span>%s</span>] 的文章'),
+              'tag'       =>  _t('含有 [<span>%s</span>] 标签的文章')
             ), '', ''); ?>
             <?php else: ?>
-            <?php $this->options->description(); ?>
+            <?php
+            echo $this->options->description();
+             ?>
             <?php endif; ?>
       </h1>
     </div>
@@ -58,7 +76,7 @@
 
 
 <!-- 类型筛选器 -->
-<div class="akarom-articletag akarom-articletag-index blur mdui-shadow-1">
+<div class="akarom-articletag akarom-articletag-index blur mdui-shadow-0">
     <i class="mdui-icon material-icons">panorama_fish_eye</i>
     <div class="akarom-articletag-options">
         <input type="radio" name="filter" id="filterall" value="all">
@@ -88,7 +106,7 @@
 
 <?php if($this->options->AKAROMsticky != null): ?>
 <div class="sticky-wrapper yuan LDtrans">
-  <div class="sticky-badge blur mdui-shadow-1">
+  <div class="sticky-badge blur mdui-shadow-0">
     <i class="mdui-icon material-icons">bookmark_border</i>
   </div>
 <div class="sticky-container">
@@ -102,7 +120,7 @@ foreach ($stickynumbers as $stickynum): ?>
     $post = Typecho_Widget::widget('Widget_Archive@cid_' . $stickynum, 'type=post', 'cid=' . $stickynum); 
   ?>
     
-      <div class="mdui-card btnyuan sticky-item mdui-hoverable">
+      <div class="mdui-card btnyuan sticky-item mdui-shadow-0">
         <div class="mdui-card-media">
           <img src="
             <?php if ($post->fields->AKAROMarticleimg != null): ?>
@@ -140,7 +158,7 @@ foreach ($stickynumbers as $stickynum): ?>
 <?php if ($this->fields->AKAROMarticleSMS == 'sms'): //短讯SMS样式 ?>
 
 <div class="taglist tagsms">
-<div class="blur mdui-card yuan mdui-hoverable articlesms">
+<div class="blur mdui-card yuan mdui-shadow-0 articlesms">
 
   <!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
   <div class="mdui-card-media">
@@ -170,7 +188,20 @@ foreach ($stickynumbers as $stickynum): ?>
   </div>
 
   <!-- 卡片的内容 -->
-  <div class="mdui-card-content mdui-typo"><?php $this->content(); ?>
+  <div class="mdui-card-content mdui-typo">
+  
+
+    <?php
+      $content = $this->content;
+      $tocResult = generateTOC($content);
+
+      $content = $tocResult['content'];
+      $content = Fancybox($content);
+      $content = parseCustomGitHubTag($content);
+      echo $content;
+    ?>
+
+
      <button style="margin-bottom:15px;margin-top:-10px;" onclick="window.location.href='<?php $this->permalink() ?>'" class="mdui-btn btnyuan mdui-float-right">评论区</button>
   </div>
 
@@ -181,7 +212,7 @@ foreach ($stickynumbers as $stickynum): ?>
 
 <?php else: //正常文章样式 ?>
 <div class="taglist tagarticle">
-<div class="yuan articlelistcard mdui-card mdui-valign mdui-text-center articlelistimg mdui-hoverable AKAROMlazyload" 
+<div class="yuan articlelistcard mdui-card mdui-valign mdui-text-center articlelistimg mdui-shadow-0 AKAROMlazyload" 
 data-bg="
 <?php if (($this->cid == 1) && ($this->fields->AKAROMarticleimg == null)): ?>
 <?php $this->options->themeUrl('config/style/img/default/Romanticism2theme-empty.webp'); ?>
@@ -214,7 +245,7 @@ data-bg="
 <?php //如果找不到搜索内容或无文章
   else: ?>
 
-<div class="yuan articlelistcard mdui-card mdui-valign mdui-text-center articlelistimg mdui-hoverable" style="background-image: url('<?php $this->options->themeUrl('config/style/img/default/Romanticism2theme-empty.webp'); ?>');">
+<div class="yuan articlelistcard mdui-card mdui-valign mdui-text-center articlelistimg mdui-shadow-0" style="background-image: url('<?php $this->options->themeUrl('config/style/img/default/Romanticism2theme-empty.webp'); ?>');">
   <div class="mdui-valign mdui-card-media-covered articlelistcard">
       <div class="mdui-card-primary easysee mdui-center">
         <div class="mdui-card-primary-title">
@@ -235,7 +266,7 @@ data-bg="
 <?php if (ceil($this->getTotal() / $this->parameter->pageSize) != '1'): ?>
 	<div class="mdui-text-center">
 	  <p>
-	    <h4 class="title mdui-text-center outlineborder blur">
+	    <h4 class="title mdui-text-center outlineborder blur akarom-alter-button">
         <?php $this->pageLink('&nbsp;&nbsp;&nbsp;&nbsp;上一页&nbsp;&nbsp;&nbsp;&nbsp;'); ?>
         <?php $this->pageLink('&nbsp;&nbsp;&nbsp;&nbsp;下一页&nbsp;&nbsp;&nbsp;&nbsp;','next'); ?>
       </h4>

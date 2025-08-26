@@ -9,7 +9,7 @@
 
  * [Romanticism]
  * 404.php 错误页
- * @version 2.1
+ * @version 2.0
 **/
 ?>
 

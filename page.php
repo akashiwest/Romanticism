@@ -10,7 +10,7 @@
  * Page
  * 独立页面内容输出
  * @author 明石
- * @version 2.1
+ * @version 2.2
  * @link https://imakashi.eu.org/
  */
 ?>
@@ -44,7 +44,7 @@
 <div class="LDtrans">
 <div class="mdui-container">
 
-<div class="akarom-articletag akarom-articletag-style blur mdui-shadow-1"> 
+<div class="akarom-articletag akarom-articletag-style blur mdui-shadow-0"> 
     <i class="mdui-list-item-icon mdui-icon material-icons">color_lens</i>
     <div class="akarom-articletag-options">
         <span class="akarom-hoverable" id="toggleFont">切换字体</span>
@@ -60,19 +60,39 @@
 
 <div class="article mdui-typo">
 
-<?php $this->content(); ?>
+<?php
+$content = $this->content;
+$tocResult = generateTOC($content);
+
+// 显示目录
+echo $tocResult['toc'];
+
+$content = $tocResult['content'];
+$content = Fancybox($content);
+$content = parseCustomGitHubTag($content);
+echo $content;
+?>
 
 <br>
 <br>
 </div>
 <div class="hr mdui-typo">
-<hr style="margin-bottom: 10px;">
 
+
+<div class="mdui-dialog yuan blur" id="reward">
+  <div class="mdui-container mdui-center akarom-rewardbox">
+    <img class="btnyuan" src="<?php $this->options->AKAROMrewardimg(); ?>">
+  </div>
+</div>
+
+
+<div class="mdui-typo blur LDtrans yuan akarom-panel-copy">
+<div class="akarom-corner-symbol-lb">&copy;</div>
 
 <?php if($this->user->hasLogin()): ?>
   <span class="akarom-alter-button-valign" onclick="window.open('<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php $this->cid(); ?>', '_blank')">
     <span class="akarom-alter-button blur yuan mdui-center">
-      <i class="mdui-icon material-icons">border_color</i><b>编辑此页面</b>
+      <i class="mdui-icon material-icons">border_color</i><b>编辑页面</b>
     </span>
   </span>
   <br>
@@ -84,11 +104,7 @@
       <i class="mdui-icon material-icons">thumb_up</i><b>赞赏文章</b>
     </span>
   </span>
-  <div class="mdui-dialog yuan blur" id="reward">
-  <div class="mdui-container mdui-center akarom-rewardbox">
-    <img class="btnyuan" src="<?php $this->options->AKAROMrewardimg(); ?>">
-  </div>
-</div>
+
 <br>
 <?php endif; ?> 
 <?php endif; ?> 
@@ -96,19 +112,19 @@
 <?php endif; ?>
 
 <p class="copyright mdui-text-center">
-  文章最后更新时间为：<?php echo date('Y年m月d日 H时' , $this->modified); ?>
+  最后更新时间：<?php echo date('Y年m月d日' , $this->modified); ?>
 <?php if ($this->fields->AKAROMarticleCopyright != 'hide' && $this->fields->AKAROMarticleCopyright != null): ?>
   <?php if ($this->fields->AKAROMarticleCopyright == 'SA'): ?>
-    <br>本文章版权声明： 遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"> CC BY-NC-SA </a> 版权协议</p>
+    <br>遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"> CC BY-NC-SA </a> 协议</p>
     <?php elseif ($this->fields->AKAROMarticleCopyright == 'ND'): ?>
-      <br>本文章版权声明： 遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"> CC BY-NC-ND </a> 版权协议</p>
+      <br>遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"> CC BY-NC-ND </a> 协议</p>
     <?php else: ?>
-      <br>本文章版权声明： <b>禁止转载</b></p>
+      <br>版权声明： <b>禁止转载</b></p>
   <?php endif; ?>
 <?php endif; ?>
 
 
-<hr>
+</div>
 <?php $this->need('config/comments.php'); ?>
 <br>
 </div>

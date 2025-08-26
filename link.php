@@ -56,7 +56,7 @@
 <?php //我写不来瞎写的，大佬手下留情！(*/ω＼*)
 if($this->content == null){
   ?>
-  <div class="blur btnyuan mdui-card mdui-hoverable mdui-m-y-1">
+  <div class="blur btnyuan mdui-card mdui-shadow-0 akarom-links mdui-m-y-1">
       <div class="mdui-card-header">
         <img class="mdui-card-header-avatar" onclick="window.location.href='<?php $this->options ->siteUrl('/admin'); ?>'" title="headicon" src="<?php if(empty($this->options->AKAROMlogoUrl)): ?><?php $this->options->themeUrl('config/style/img/default/user.jpg'); ?><?php else: ?><?php $this->options->AKAROMlogoUrl(); ?><?php endif; ?>">
         <div class="mdui-card-header-title">
@@ -74,7 +74,7 @@ $friendlink = $this->content;
 $friendlink = str_replace('[icon]','
 
   <div class="mdui-col">
-    <div class="blur btnyuan mdui-card mdui-hoverable mdui-m-y-1">
+    <div class="blur btnyuan mdui-card mdui-shadow-0 akarom-links mdui-m-y-1">
       <div class="mdui-card-header">
         <img class="mdui-card-header-avatar" src="
 
@@ -132,21 +132,26 @@ echo $friendlink;
 
 </div>
 <div class="hr mdui-typo">
-<hr style="margin-bottom: 10px;">
 
 
+
+<div class="mdui-typo blur LDtrans yuan akarom-panel-copy">
+<div class="akarom-corner-symbol-rb">✨</div>
 <?php if($this->user->hasLogin()): ?>
-  <span class="akarom-alter-button-valign" onclick="window.open('<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php $this->cid(); ?>', '_blank')">
+  <span class="akarom-alter-button-valign" onclick="window.open('<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php $this->cid(); ?>', '_blank')">
     <span class="akarom-alter-button blur yuan mdui-center">
       <i class="mdui-icon material-icons">border_color</i><b>编辑友情链接</b>
     </span>
   </span>
   <br>
-<?php endif; ?>  
+<?php endif; ?>
+
 <p class="copyright mdui-text-center">
-  页面最后更新时间为：<?php echo date('Y年m月d日 H时' , $this->modified); ?>
-</p>
-<hr>
+  最后更新时间：<?php echo date('Y年m月d日' , $this->modified); ?>
+</div>
+
+
+
 <?php $this->need('config/comments.php'); ?>
 <br>
 </div>

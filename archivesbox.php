@@ -67,7 +67,8 @@
         $output .= '<p><span class="mdui-typo-caption-opacity">'.date('n月d日',$archives->created).' </span><a href="'.$archives->permalink .'"> <b>'. $archives->title .'</b></a></p>';
         }
     endwhile;
-    echo '<h3>当前共有 '.$count.' 篇文章</h3><br><hr>';
+    $WordCount = getTotalWordCount();
+    echo '<h3>'.$WordCount.' 个字符环绕在 '.$count.' 篇文章周围</h3><br><hr>';
     echo $output;
 ?>    
 <br>
