@@ -138,7 +138,7 @@ echo $friendlink;
 <div class="mdui-typo blur LDtrans yuan akarom-panel-copy">
 <div class="akarom-corner-symbol-rb">✨</div>
 <?php if($this->user->hasLogin()): ?>
-  <span class="akarom-alter-button-valign" onclick="window.open('<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php $this->cid(); ?>', '_blank')">
+  <span class="akarom-alter-button-valign" onclick="window.open('<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php $this->cid(); ?>', '_blank')">
     <span class="akarom-alter-button blur yuan mdui-center">
       <i class="mdui-icon material-icons">border_color</i><b>编辑友情链接</b>
     </span>
