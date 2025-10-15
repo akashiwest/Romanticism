@@ -143,6 +143,16 @@ function themeConfig($form) {  //后台设置界面
 }
 
 function themeFields($layout) { //文章自定义字段功能
+    // 添加页面图标字段
+    $AKAROMarticleicon = new Typecho_Widget_Helper_Form_Element_Text(
+        'icon', 
+        NULL, 
+        'check_box_outline_blank', // 默认值为 'check_box_outline_blank'
+        _t('页面图标'), 
+        _t('输入 Material Icons 的图标名称，例如：home, book, settings。如果留空，将使用默认图标。')
+    );
+    $layout->addItem($AKAROMarticleicon);
+
     $AKAROMarticleimg = new Typecho_Widget_Helper_Form_Element_Text('AKAROMarticleimg', NULL, NULL, _t('设置文章封面图'), _t('在这里填入一个图片 URL 地址。如未设置封面图将会自动显示随机图片。'));
     $layout->addItem($AKAROMarticleimg);
 
