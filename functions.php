@@ -145,11 +145,7 @@ function themeConfig($form) {  //后台设置界面
 function themeFields($layout) { //文章自定义字段功能
     // 添加页面图标字段
     $AKAROMarticleicon = new Typecho_Widget_Helper_Form_Element_Text(
-        'icon', 
-        NULL, 
-        'check_box_outline_blank', // 默认值为 'check_box_outline_blank'
-        _t('页面图标'), 
-        _t('输入 Material Icons 的图标名称，例如：home, book, settings。如果留空，将使用默认图标。')
+        'AKAROMarticleicon', NULL, 'check_box_outline_blank', _t('页面图标'), _t('输入 Material Icons 的图标名称。如留空将使用默认图标。')
     );
     $layout->addItem($AKAROMarticleicon);
 
