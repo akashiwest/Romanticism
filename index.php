@@ -133,7 +133,7 @@ foreach ($stickynumbers as $stickynum): ?>
           <div class="mdui-card-media-covered">
             <div class="mdui-card-primary">
               <div class="mdui-card-primary-title mdui-text-truncate easysee">
-                <h5><a class="title chameleon underline" onclick="window.location.href='<?php echo $post->permalink; ?>'">&nbsp;<?php echo $post->title; ?>&nbsp;</a></h5></div>
+                <h5><a class="title chameleon underline" href="<?php echo $post->permalink; ?>">&nbsp;<?php echo $post->title; ?>&nbsp;</a></h5></div>
             </div>
           </div>
         </div>
@@ -226,10 +226,10 @@ data-bg="
       <div class="mdui-card-primary easysee mdui-center">
         <div class="mdui-card-primary-title">
           <h3 class="mdui-hidden-xs-down">
-            <a class="title chameleon underline" onclick="window.location.href='<?php $this->permalink() ?>'">&nbsp;<?php $this->title(); ?>&nbsp;</a>
+            <a class="title chameleon underline" href="<?php $this->permalink() ?>">&nbsp;<?php $this->title(); ?>&nbsp;</a>
           </h3>
           <h4 class="mdui-hidden-sm-up">
-            <a class="title chameleon underline" onclick="window.location.href='<?php $this->permalink() ?>'">&nbsp;<?php $this->title(); ?>&nbsp;</a>
+            <a class="title chameleon underline" href="<?php $this->permalink() ?>">&nbsp;<?php $this->title(); ?>&nbsp;</a>
           </h4></div>
         <div class="mdui-card-primary-subtitle"><h5><?php $this->date(); ?> · <?php $this->category(',', false, '无分类'); ?> · <?php $this -> commentsNum('0 评论', '1 评论', '%d 评论'); ?></h5></div>
     </div>
