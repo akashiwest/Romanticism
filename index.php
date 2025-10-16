@@ -177,10 +177,10 @@ foreach ($stickynumbers as $stickynum): ?>
     <?php if (!empty($this->title)): ?>
     <div class="mdui-card-primary-title"><b>
       <h3 class="mdui-hidden-xs-down">
-        <a class="title" onclick="window.location.href='<?php $this->permalink() ?>'"><?php $this->title(); ?></a>
+        <a class="title" href="<?php $this->permalink() ?>"><?php $this->title(); ?></a>
       </h3>
       <h4 class="mdui-hidden-sm-up">
-        <a class="title" onclick="window.location.href='<?php $this->permalink() ?>'"><?php $this->title(); ?></a>
+        <a class="title" href="<?php $this->permalink() ?>"><?php $this->title(); ?></a>
       </h4>
     </b></div>
   <?php endif; ?>
