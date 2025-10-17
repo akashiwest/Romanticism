@@ -64,7 +64,7 @@ if($this->content == null){
             <?php $this->options->title(); ?>
           </b></a></div>
         <div class="mdui-card-header-subtitle">
-          <?php $this->options->description(); ?>
+          <?php $this->options->AKAROMindexslogen(); ?>
         </div>
       </div>
     </div>
@@ -119,7 +119,7 @@ echo $friendlink;
      博客标志：<?php $this->options->AKAROMlogoUrl(); ?><br>
      地址：<?php empty($this->options->AKAROMLinkstermsUrl) ? $this->options->siteUrl() : $this->options->AKAROMLinkstermsUrl(); ?><br>
      标题：<?php $this->options->title() ?><br>
-     描述：<?php $this->options->description() ?><br><br>
+     描述：<?php $this->options->AKAROMindexslogen(); ?><br><br>
      <b>交换的格式</b><br>
      [icon]网站标志或头像的图片链接<br>
      [link]你的网站网址<br>
