@@ -88,6 +88,9 @@ function themeConfig($form) {  //后台设置界面
 
 
     <?php
+    $AKAROMindexslogen = new Typecho_Widget_Helper_Form_Element_Text('AKAROMindexslogen', NULL, NULL, _t('设置 Slogen'), _t('在这里填入简短的 slogen，将会显示在首页和友链信息处。请前往“设置->基本”填写SEO友好的长描述。'));
+    $form->addInput($AKAROMindexslogen);
+                             
     $AKAROMlogoUrl = new Typecho_Widget_Helper_Form_Element_Text('AKAROMlogoUrl', NULL, NULL, _t('设置您的头像'), _t('在这里填入一个图片 url 地址，将会显示在侧边栏上部。'));
     $form->addInput($AKAROMlogoUrl);
 
