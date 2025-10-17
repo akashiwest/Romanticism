@@ -70,7 +70,7 @@
         <?php while($pages->next()): ?>
         <?php 
             // 获取页面的自定义字段 'icon'
-            $icon = isset($pages->fields->AKAROMarticleicon) ? $pages->fields->AKAROMarticleicon : 'check_box_outline_blank';
+            $icon = $pages->fields->AKAROMarticleicon; 
           ?>
           <a href="<?php $pages->permalink(); ?>" class="btnyuan mdui-list-item ">
             <i class="mdui-list-item-icon mdui-icon material-icons"><?php echo $icon; ?></i>
