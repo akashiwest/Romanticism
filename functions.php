@@ -144,10 +144,16 @@ function themeConfig($form) {  //后台设置界面
 
 function themeFields($layout) { //文章自定义字段功能
     // 添加页面图标字段
-    $AKAROMarticleicon = new Typecho_Widget_Helper_Form_Element_Text(
-        'AKAROMarticleicon', NULL, 'check_box_outline_blank', _t('页面图标'), _t('输入 <a href="https://www.mdui.org/docs/material_icon" target="_blank">Material Icons 图标名</a>。如留空将使用默认图标。')
-    );
-    $layout->addItem($AKAROMarticleicon);
+    if (preg_match("/write-page.php/", $_SERVER['REQUEST_URI'])) {
+        $AKAROMarticleicon = new Typecho_Widget_Helper_Form_Element_Text(
+            'AKAROMarticleicon',
+            NULL,
+            NULL,
+            _t('页面图标'),
+            _t('输入 <a href="https://www.mdui.org/docs/material_icon" target="_blank">Material Icons 图标名</a>,将显示在侧拉菜单。如留空将使用默认图标。')
+        );
+        $layout->addItem($AKAROMarticleicon);
+    }
 
     $AKAROMarticleimg = new Typecho_Widget_Helper_Form_Element_Text('AKAROMarticleimg', NULL, NULL, _t('设置文章封面图'), _t('在这里填入一个图片 URL 地址。如未设置封面图将会自动显示随机图片。'));
     $layout->addItem($AKAROMarticleimg);
