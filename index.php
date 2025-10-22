@@ -12,7 +12,7 @@
  * @package Romanticism
  * @author 明石
  * @version 2.2
- * @link https://imakashi.eu.org/
+ * @link https://imakashi.com/
  * @date 2025-08-20
  **/
 
