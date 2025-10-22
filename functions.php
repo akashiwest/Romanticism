@@ -35,37 +35,62 @@ function themeConfig($form) {  //后台设置界面
     <div id="updateStatus"></div>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const checkUpdateBtn = document.getElementById('checkUpdateBtn');
-        const updateStatus = document.getElementById('updateStatus');
+    const checkUpdateBtn = document.getElementById('checkUpdateBtn');
+    const updateStatus = document.getElementById('updateStatus');
+    
+    function escapeHTML(str) {
+        const div = document.createElement('div');
+        div.textContent = str ?? '';
+        return div.innerHTML;
+    }
+    
+    function sanitizeURL(url) {
+        try {
+            const parsed = new URL(url);
+            if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+                return url;
+            }
+        } catch (e) {}
+        return '#';
+    }
+    
+    checkUpdateBtn.addEventListener('click', function() {
+        updateStatus.innerHTML = "<p><b>检查更新中...</b></p>";
+        checkUpdateBtn.disabled = true;
         
-        checkUpdateBtn.addEventListener('click', function() {
-            updateStatus.innerHTML = "<p><b>检查更新中...</b></p>";
-            checkUpdateBtn.disabled = true;
-            
-            fetch('<?php echo Helper::options()->themeUrl.'/update.php'; ?>')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        updateStatus.innerHTML = `<p style="color:Crimson;"><b>${data.error}</b></p>`;
-                        checkUpdateBtn.disabled = false;
-                    } else {
-                        if (data.current_version !== data.latest_version) {
-                            checkUpdateBtn.disabled = false;
-                            updateStatus.innerHTML = `
-                                <p><b>最新版本:</b> ${data.latest_version}</p>
-                                <p><b>更新内容:</b> ${data.feature}</p>
-                                <p><a href="${data.update_url}" target="_blank"><b>点击下载更新</b></a></p>
-                            `;
-                        } else {
-                            updateStatus.innerHTML = `<p style="color:ForestGreen;"><b>当前已是最新版本</b></p>`;
-                            checkUpdateBtn.disabled = false;
-                        }
-                    }
-                })
-                .catch(error => {
-                    updateStatus.innerHTML = `<p style="color:Crimson;"><b>检查更新失败: ${error.message}</b></p>`;
-                    checkUpdateBtn.disabled = false;
-                });
+        fetch('<?php echo Helper::options()->themeUrl . "/update.php"; ?>')
+            .then(response => {
+                if (!response.ok) throw new Error('网络响应错误');
+                return response.json();
+            })
+            .then(data => {
+                if (data.error) {
+                    updateStatus.innerHTML = `
+                        <p style="color:Crimson;"><b>${escapeHTML(data.error)}</b></p>
+                    `;
+                    return;
+                }
+                
+                if (data.current_version !== data.latest_version) {
+                    updateStatus.innerHTML = `
+                        <p><b>最新版本:</b> ${escapeHTML(data.latest_version)}</p>
+                        <p><b>更新内容:</b> ${escapeHTML(data.feature)}</p>
+                        <p><a href="${sanitizeURL(data.update_url)}" target="_blank" rel="noopener noreferrer"><b>点击下载更新</b></a></p>
+                    `;
+                } else {
+                    updateStatus.innerHTML = `
+                        <p style="color:ForestGreen;"><b>当前已是最新版本</b></p>
+                    `;
+                }
+            })
+            .catch(error => {
+                updateStatus.innerHTML = `
+                    <p style="color:Crimson;"><b>检查更新失败: ${escapeHTML(error.message)}</b></p>
+                `;
+            })
+            .finally(() => {
+                checkUpdateBtn.disabled = false;
+            });
         });
     });
     </script>
