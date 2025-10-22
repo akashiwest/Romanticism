@@ -4,7 +4,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 function checkThemeUpdate()
 {
-    $api_url = 'https://versioncheck.imakashi.eu.org/?themeRomanticism';
+    $api_url = 'https://versioncheck.imakashi.com/?themeRomanticism';
     $response = @file_get_contents($api_url);
     if ($response === FALSE) {
         return json_encode(["error" => "无法连接到更新服务器"]);
@@ -25,4 +25,5 @@ function checkThemeUpdate()
 }
 
 echo checkThemeUpdate();
+
 ?>
