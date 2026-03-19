@@ -379,7 +379,7 @@ function parseCustomGitHubTag($content) {
                     更新于 {$safeData['lastUpdated']}
                     </span>
                      · 
-                    <span class="github-stars">⭐ {$safeData['stars']}</span>
+                    <span class="github-stars">&starf; {$safeData['stars']}</span>
                     <a class="mdui-float-right"
                        href="{$safeData['url']}" 
                        target="_blank" 
