@@ -101,4 +101,4 @@ Demo: [明石博客](https://imakashi.eu.org/blog/)
 
 Romanticism Version 2.2
 
-Copyright©2022-2025 [Akashi](https://imakashi.eu.org), under GPL-3.0 License
+Copyright©2022-2026 [Akashi](https://imakashi.com), under GPL-3.0 License
