@@ -63,7 +63,7 @@
             $year = $year_tmp;
             $output .= '<h1>'. $year .' 年</h1>'; 
         }
-       if (!empty($archives->title)) {
+       if (!empty($archives->title) && $archives->title !== '未命名文档') {
         $output .= '<p><span class="mdui-typo-caption-opacity">'.date('n月d日',$archives->created).' </span><a href="'.$archives->permalink .'"> <b>'. $archives->title .'</b></a></p>';
         }
     endwhile;
