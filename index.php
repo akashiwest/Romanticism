@@ -174,7 +174,7 @@ foreach ($stickynumbers as $stickynum): ?>
 
   <!-- 卡片的标题和副标题 -->
   <div class="mdui-card-primary">
-    <?php if (!empty($this->title)): ?>
+    <?php if (!empty($this->title) && $this->title !== '未命名文档'): ?>
     <div class="mdui-card-primary-title"><b>
       <h3 class="mdui-hidden-xs-down">
         <a class="title" href="<?php $this->permalink() ?>"><?php $this->title(); ?></a>
