@@ -6,7 +6,7 @@
 
 **“在明石的简洁设计中捕捉来自日常生活中的浪漫主义。”**
 
-Demo: [明石博客](https://imakashi.com/blog/)
+Demo: [明石博客]([https://imakashi.com/blog/](https://imakashi.com/blog/archives/themeRomanticism.html))
 
 
 
